@@ -55,7 +55,7 @@ def get_index_to_chr_pos(data_path, cell, resolution):
     return index_to_chr_pos
 
 
-def create_contact_list(data_path, cell, first_chr, second_chr, resolution):
+def create_contact_list(data_path, cell, first_chr, second_chr, resolution, type):
     chr_pos_to_index = get_chr_pos_to_index(data_path, cell, resolution)
     hic_path = os.path.join(data_path, cell, "HiC", "res" + str(resolution), "oe_" + first_chr + "_" + second_chr + ".txt")
     contact_list = pd.read_csv(hic_path, sep = "\t", header = None)
