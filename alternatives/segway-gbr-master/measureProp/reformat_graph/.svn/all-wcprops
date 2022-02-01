@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnrepo/!svn/ver/12321/bilmes/src/measureProp-maxwl/reformat_graph
+END
+run_cmd.sh
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnrepo/!svn/ver/12321/bilmes/src/measureProp-maxwl/reformat_graph/run_cmd.sh
+END
+reformat_graph.cc
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnrepo/!svn/ver/12321/bilmes/src/measureProp-maxwl/reformat_graph/reformat_graph.cc
+END
+reformat_graph.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnrepo/!svn/ver/12321/bilmes/src/measureProp-maxwl/reformat_graph/reformat_graph.h
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnrepo/!svn/ver/12321/bilmes/src/measureProp-maxwl/reformat_graph/readme.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnrepo/!svn/ver/12321/bilmes/src/measureProp-maxwl/reformat_graph/Makefile
+END

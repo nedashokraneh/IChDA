@@ -2,12 +2,16 @@ import pandas as pd
 import numpy as np
 import math
 import os
+import subprocess
 
 hg19_chr_sizes = {'chr1': 249250621, 'chr2': 243199373, 'chr3': 198022430, 'chr4': 191154276,
  'chr5': 180915260, 'chr6': 171115067, 'chr7': 159138663, 'chr8': 146364022, 'chr9': 141213431,
   'chr10': 135534747, 'chr11': 135006516, 'chr12': 133851895, 'chr13': 115169878, 'chr14': 107349540,
    'chr15': 102531392, 'chr16': 90354753, 'chr17': 81195210, 'chr18': 78077248, 'chr19': 59128983,
     'chr20': 63025520, 'chr21': 48129895, 'chr22': 51304566}
+
+project_path = "/media/nedooshki/f4f0aea6-900a-437f-82e1-238569330477/genome-structure-function-aggregation"
+juicer_path = os.path.join(project_path, 'utilities/juicer_tools_1.22.01.jar')
 
 def read_annot_file(annot_path, vir_res, resolution, skip_first_row):
     if skip_first_row:
@@ -54,21 +58,32 @@ def get_index_to_chr_pos(data_path, cell, resolution):
         index_to_chr_pos.append((row['chr_name'],row['pos']))
     return index_to_chr_pos
 
+def dump_hic(hic_path, first_chr, second_chr, resolution, type, dump_dir):
+    if not os.path.exists(dump_dir):
+        os.mkdir(dump_dir)
+    if not os.path.exists(os.path.join(dump_dir,type+"_"+str(resolution))):
+        os.mkdir(os.path.join(dump_dir,type+"_"+str(resolution)))
+    dump_name = "chr" + str(first_chr) + "_chr" + str(second_chr) + ".txt"
+    dump_path = os.path.join(dump_dir,type+"_"+str(resolution),dump_name)
+    if not os.path.exists(dump_path):
+        cmd = ["java", "-jar", juicer_path, "dump", type, "VC", hic_path, first_chr, second_chr, "BP", resolution, dump_path]
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #print('stderr: {}'.format(p.communicate()[1]))
 
-def create_contact_list(data_path, cell, first_chr, second_chr, resolution, type):
+def create_contact_list(data_path, cell, first_chr, second_chr, resolution, type, assembly):
     chr_pos_to_index = get_chr_pos_to_index(data_path, cell, resolution)
-    hic_path = os.path.join(data_path, cell, "HiC", "res" + str(resolution), "oe_" + first_chr + "_" + second_chr + ".txt")
+    hic_path = os.path.join(data_path, cell, "Hi-C", assembly, type + "_" + str(resolution), first_chr + "_" + second_chr + ".txt")
     contact_list = pd.read_csv(hic_path, sep = "\t", header = None)
     contact_list.columns = ['source', 'target', 'weight']
     contact_list['id1'] = [chr_pos_to_index[first_chr][int(p/resolution)] for p in contact_list['source']]
     contact_list['id2'] = [chr_pos_to_index[second_chr][int(p/resolution)] for p in contact_list['target']]
     contact_list = contact_list[['id1','id2','weight']]
     contact_list = contact_list.dropna()
-    contact_list[['id1','id2']] = contact_list[['id1','id2']].astype(int)
+    contact_list[['id1','ictd2']] = contact_list[['id1','id2']].astype(int)
     return contact_list
 
-def create_contact_list_woInd(data_path, cell, first_chr, second_chr, resolution):
-    hic_path = os.path.join(data_path, cell, "HiC", "res" + str(resolution), "oe_" + first_chr + "_" + second_chr + ".txt")
+def create_contact_list_woInd(data_path, cell, first_chr, second_chr, resolution, type, assembly):
+    hic_path = os.path.join(data_path, cell, "Hi-C", assembly, type + "_" + str(resolution), first_chr + "_" + second_chr + ".txt")
     contact_list = pd.read_csv(hic_path, sep = "\t", header = None)
     contact_list.columns = ['source', 'target', 'weight']
     contact_list['source'] = [int(s/resolution) for s in contact_list['source']]
@@ -83,11 +98,11 @@ def sym_mat(mat):
     mat[i_lower] = mat[i_upper]
     return mat
 
-def create_matrix(data_path, cell, first_chr, second_chr, resolution):
+def create_matrix(data_path, cell, first_chr, second_chr, resolution, type, assembly):
     row_num = math.ceil(hg19_chr_sizes[first_chr]/resolution)
     col_num = math.ceil(hg19_chr_sizes[second_chr]/resolution)
     mat = np.zeros([row_num,col_num])
-    contact_list = create_contact_list_woInd(data_path, cell, first_chr, second_chr, resolution)
+    contact_list = create_contact_list_woInd(data_path, cell, first_chr, second_chr, resolution, type, assembly)
     for index,row in contact_list.iterrows():
         if not np.isnan(row[2]):
             mat[int(row[0]),int(row[1])] = row[2]

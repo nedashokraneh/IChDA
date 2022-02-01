@@ -23,7 +23,7 @@ def spatial_correlation(signal,adj_mat):
     moran = frac_nom * dim / (mat_sum * frac_denom)
     return(moran)
 
-    
+
 def spatial_correlation2(signal1,signal2,adj_mat):
     signal = signal1 + signal2
     signal_mean = np.mean(signal)
