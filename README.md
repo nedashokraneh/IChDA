@@ -7,3 +7,6 @@ embed the graph information into structural features, and then jointly cluster f
 with two other aggregative approaches: graph-based regularization (GBR) and Hidden Markov Random Field (HMRF). 
 
 # Data processing
+
+* 1D genomic signals 
+* Hi-C data
