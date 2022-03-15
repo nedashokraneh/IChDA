@@ -1,0 +1,1167 @@
+
+% Dense CPTs
+5 
+0 
+start_seg 
+0 % number parents
+8 % cardinalities
+1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 
+1 
+seg_subseg 
+1 % number parents
+8 1 % cardinalities
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+2 
+seg_seg 
+1 % number parents
+8 8 % cardinalities
+0.00000000000000000e+00 1.43887750325331520e-01 1.89513072852035697e-01 3.84327805602811060e-02 1.89739747101488859e-01 1.68864601422902272e-02 1.84374176999174855e-01 2.37166012019397882e-01 
+7.32716717443976789e-02 0.00000000000000000e+00 1.51689195762950341e-01 1.79411283504605612e-01 1.94334811139894315e-01 1.52994916519022285e-02 1.72829182855767538e-01 2.13164363340482249e-01 
+7.16857040958454456e-02 1.34701518709114676e-01 0.00000000000000000e+00 3.29416913007761547e-01 1.19885520902375586e-01 6.70495907285829501e-02 1.48118027807247948e-01 1.29142724749071958e-01 
+1.45776776384767808e-02 1.74493694999545979e-01 3.07175949790960023e-01 0.00000000000000000e+00 1.58829746364262780e-01 1.90734130096751497e-01 7.91359355926566088e-02 7.50528655173463288e-02 
+7.55411185226855519e-02 1.99489274991887428e-01 1.48269972507528935e-01 2.27538175559042433e-01 0.00000000000000000e+00 6.52871185126835812e-02 1.69877993246978443e-01 1.13996346659193643e-01 
+3.12991139613582325e-02 2.77465085120007365e-02 2.10255559268049674e-01 4.97032709073391477e-01 1.33476211247657822e-01 0.00000000000000000e+00 6.00930489842957938e-02 4.00968489532463196e-02 
+1.36597836244349624e-01 1.89398332336089437e-01 1.82909324560862924e-01 7.96148301428716426e-02 2.15141416102141436e-01 3.34992630134597347e-02 0.00000000000000000e+00 1.62838997600225216e-01 
+1.41138578372181439e-01 2.58807335680126205e-01 1.84611221869848879e-01 1.07830343959392630e-01 1.15597675922462201e-01 2.20425067450561313e-02 1.69972337450932487e-01 0.00000000000000000e+00 
+3 
+seg_subseg_subseg 
+2 % number parents
+8 1 1 % cardinalities
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+4 
+segCountDown_seg_segTransition 
+2 % number parents
+2 8 3 % cardinalities
+3.09507385385562439e-01 3.09507385385637693e-03 6.87397540760581127e-01 
+6.38136678072433128e-01 6.38136678072594252e-03 3.55481955146841000e-01 
+3.75153976409724643e-01 3.75153976409487279e-03 6.21094483826180488e-01 
+7.94469427077908241e-01 7.94469427078102648e-03 1.97585878651310692e-01 
+3.53235998901251347e-01 3.53235998901149694e-03 6.43231641109737184e-01 
+9.03527519142963920e-01 9.03527519143189524e-03 8.74372056656041591e-02 
+3.52082101109694567e-01 3.52082101109762666e-03 6.44397077879207747e-01 
+2.91922109440593214e-01 2.91922109440794766e-03 7.05158669464998833e-01 
+9.90099009900987648e-01 9.90099009901235227e-03 0.00000000000000000e+00 
+9.90099009900991422e-01 9.90099009900853588e-03 0.00000000000000000e+00 
+9.90099009900985094e-01 9.90099009901491099e-03 0.00000000000000000e+00 
+9.90099009900985094e-01 9.90099009901488497e-03 0.00000000000000000e+00 
+9.90099009900994087e-01 9.90099009900591472e-03 0.00000000000000000e+00 
+9.90099009900990645e-01 9.90099009900936161e-03 0.00000000000000000e+00 
+9.90099009900987648e-01 9.90099009901236095e-03 0.00000000000000000e+00 
+9.90099009900984983e-01 9.90099009901502548e-03 0.00000000000000000e+00 
+
+
+% means
+96 
+0 
+mean_seg0_subseg0_DNase 1 1.4782985449e+00 
+1 
+mean_seg0_subseg0_H3K4me2 1 1.5299685001e+00 
+2 
+mean_seg0_subseg0_H3K27ac 1 1.7171018124e+00 
+3 
+mean_seg0_subseg0_H2A_2EZ 1 9.1817712784e-01 
+4 
+mean_seg0_subseg0_H3K9me3 1 6.8080443144e-01 
+5 
+mean_seg0_subseg0_H3K4me1 1 1.3582631350e+00 
+6 
+mean_seg0_subseg0_H3K27me3 1 4.4394773245e-01 
+7 
+mean_seg0_subseg0_H3K9ac 1 1.4108644724e+00 
+8 
+mean_seg0_subseg0_H3K4me3 1 1.1864213943e+00 
+9 
+mean_seg0_subseg0_H3K36me3 1 1.1397739649e+00 
+10 
+mean_seg0_subseg0_H3K79me2 1 1.6328312159e+00 
+11 
+mean_seg0_subseg0_H4K20me1 1 8.1199431419e-01 
+12 
+mean_seg1_subseg0_DNase 1 5.8649146557e-01 
+13 
+mean_seg1_subseg0_H3K4me2 1 4.1362586617e-01 
+14 
+mean_seg1_subseg0_H3K27ac 1 2.9043456912e-01 
+15 
+mean_seg1_subseg0_H2A_2EZ 1 5.4117685556e-01 
+16 
+mean_seg1_subseg0_H3K9me3 1 6.0554444790e-01 
+17 
+mean_seg1_subseg0_H3K4me1 1 5.1641678810e-01 
+18 
+mean_seg1_subseg0_H3K27me3 1 9.7076469660e-01 
+19 
+mean_seg1_subseg0_H3K9ac 1 4.8624196649e-01 
+20 
+mean_seg1_subseg0_H3K4me3 1 4.8634192348e-01 
+21 
+mean_seg1_subseg0_H3K36me3 1 4.1111138463e-01 
+22 
+mean_seg1_subseg0_H3K79me2 1 1.9207765162e-01 
+23 
+mean_seg1_subseg0_H4K20me1 1 8.0149918795e-01 
+24 
+mean_seg2_subseg0_DNase 1 6.5113836527e-01 
+25 
+mean_seg2_subseg0_H3K4me2 1 5.7360857725e-01 
+26 
+mean_seg2_subseg0_H3K27ac 1 4.7322916985e-01 
+27 
+mean_seg2_subseg0_H2A_2EZ 1 7.3919975758e-01 
+28 
+mean_seg2_subseg0_H3K9me3 1 7.4623090029e-01 
+29 
+mean_seg2_subseg0_H3K4me1 1 6.4952647686e-01 
+30 
+mean_seg2_subseg0_H3K27me3 1 6.8119525909e-01 
+31 
+mean_seg2_subseg0_H3K9ac 1 5.4120963812e-01 
+32 
+mean_seg2_subseg0_H3K4me3 1 6.0283142328e-01 
+33 
+mean_seg2_subseg0_H3K36me3 1 5.4846608639e-01 
+34 
+mean_seg2_subseg0_H3K79me2 1 3.2878434658e-01 
+35 
+mean_seg2_subseg0_H4K20me1 1 5.9236568213e-01 
+36 
+mean_seg3_subseg0_DNase 1 4.4225993752e-01 
+37 
+mean_seg3_subseg0_H3K4me2 1 2.7465522289e-01 
+38 
+mean_seg3_subseg0_H3K27ac 1 2.3493596911e-01 
+39 
+mean_seg3_subseg0_H2A_2EZ 1 5.2070516348e-01 
+40 
+mean_seg3_subseg0_H3K9me3 1 5.0481885672e-01 
+41 
+mean_seg3_subseg0_H3K4me1 1 3.7238660455e-01 
+42 
+mean_seg3_subseg0_H3K27me3 1 7.0124292374e-01 
+43 
+mean_seg3_subseg0_H3K9ac 1 4.0463384986e-01 
+44 
+mean_seg3_subseg0_H3K4me3 1 4.3893417716e-01 
+45 
+mean_seg3_subseg0_H3K36me3 1 3.7658718228e-01 
+46 
+mean_seg3_subseg0_H3K79me2 1 1.5353636444e-01 
+47 
+mean_seg3_subseg0_H4K20me1 1 5.7909297943e-01 
+48 
+mean_seg4_subseg0_DNase 1 7.2963303328e-01 
+49 
+mean_seg4_subseg0_H3K4me2 1 6.7734277248e-01 
+50 
+mean_seg4_subseg0_H3K27ac 1 6.7655789852e-01 
+51 
+mean_seg4_subseg0_H2A_2EZ 1 6.0954231024e-01 
+52 
+mean_seg4_subseg0_H3K9me3 1 6.7030292749e-01 
+53 
+mean_seg4_subseg0_H3K4me1 1 6.7886555195e-01 
+54 
+mean_seg4_subseg0_H3K27me3 1 4.7616970539e-01 
+55 
+mean_seg4_subseg0_H3K9ac 1 7.0569032431e-01 
+56 
+mean_seg4_subseg0_H3K4me3 1 6.9902318716e-01 
+57 
+mean_seg4_subseg0_H3K36me3 1 1.1008874178e+00 
+58 
+mean_seg4_subseg0_H3K79me2 1 8.4130090475e-01 
+59 
+mean_seg4_subseg0_H4K20me1 1 7.0236629248e-01 
+60 
+mean_seg5_subseg0_DNase 1 3.8384366035e-01 
+61 
+mean_seg5_subseg0_H3K4me2 1 2.1108470857e-01 
+62 
+mean_seg5_subseg0_H3K27ac 1 2.0167632401e-01 
+63 
+mean_seg5_subseg0_H2A_2EZ 1 3.8406530023e-01 
+64 
+mean_seg5_subseg0_H3K9me3 1 6.1213105917e-01 
+65 
+mean_seg5_subseg0_H3K4me1 1 2.9506501555e-01 
+66 
+mean_seg5_subseg0_H3K27me3 1 4.1803681850e-01 
+67 
+mean_seg5_subseg0_H3K9ac 1 3.2242619991e-01 
+68 
+mean_seg5_subseg0_H3K4me3 1 4.1979756951e-01 
+69 
+mean_seg5_subseg0_H3K36me3 1 3.5093280673e-01 
+70 
+mean_seg5_subseg0_H3K79me2 1 1.2737965584e-01 
+71 
+mean_seg5_subseg0_H4K20me1 1 4.2154288292e-01 
+72 
+mean_seg6_subseg0_DNase 1 1.0700565577e+00 
+73 
+mean_seg6_subseg0_H3K4me2 1 1.1329146624e+00 
+74 
+mean_seg6_subseg0_H3K27ac 1 1.1620814800e+00 
+75 
+mean_seg6_subseg0_H2A_2EZ 1 7.7905923128e-01 
+76 
+mean_seg6_subseg0_H3K9me3 1 6.4780002832e-01 
+77 
+mean_seg6_subseg0_H3K4me1 1 1.0107282400e+00 
+78 
+mean_seg6_subseg0_H3K27me3 1 4.7316056490e-01 
+79 
+mean_seg6_subseg0_H3K9ac 1 1.0614012480e+00 
+80 
+mean_seg6_subseg0_H3K4me3 1 9.6062320471e-01 
+81 
+mean_seg6_subseg0_H3K36me3 1 1.1460270882e+00 
+82 
+mean_seg6_subseg0_H3K79me2 1 1.3420304060e+00 
+83 
+mean_seg6_subseg0_H4K20me1 1 8.1282711029e-01 
+84 
+mean_seg7_subseg0_DNase 1 9.5009917021e-01 
+85 
+mean_seg7_subseg0_H3K4me2 1 9.5501983166e-01 
+86 
+mean_seg7_subseg0_H3K27ac 1 8.5431313515e-01 
+87 
+mean_seg7_subseg0_H2A_2EZ 1 8.4761381149e-01 
+88 
+mean_seg7_subseg0_H3K9me3 1 7.0714575052e-01 
+89 
+mean_seg7_subseg0_H3K4me1 1 9.4454073906e-01 
+90 
+mean_seg7_subseg0_H3K27me3 1 6.5087014437e-01 
+91 
+mean_seg7_subseg0_H3K9ac 1 8.2612651587e-01 
+92 
+mean_seg7_subseg0_H3K4me3 1 7.9496008158e-01 
+93 
+mean_seg7_subseg0_H3K36me3 1 7.1846473217e-01 
+94 
+mean_seg7_subseg0_H3K79me2 1 6.8481832743e-01 
+95 
+mean_seg7_subseg0_H4K20me1 1 7.1296149492e-01 
+
+
+% diagonal covariance matrices
+12 
+0 
+covar_DNase 1 3.5315707326e-02 
+1 
+covar_H3K4me2 1 3.5383172333e-02 
+2 
+covar_H3K27ac 1 4.3770186603e-02 
+3 
+covar_H2A_2EZ 1 2.3805214092e-02 
+4 
+covar_H3K9me3 1 3.9783377200e-02 
+5 
+covar_H3K4me1 1 2.7162617072e-02 
+6 
+covar_H3K27me3 1 2.3320229724e-02 
+7 
+covar_H3K9ac 1 2.7031563222e-02 
+8 
+covar_H3K4me3 1 1.9556734711e-02 
+9 
+covar_H3K36me3 1 4.9146339297e-02 
+10 
+covar_H3K79me2 1 8.7012067437e-02 
+11 
+covar_H4K20me1 1 1.9675511867e-02 
+
+
+% dense PMFs
+1 
+0 
+dpmf_always 1 1.00000000000000000e+00 
+
+
+% Components
+96 
+0 
+1 
+0 mc_asinh_norm_seg0_subseg0_DNase 
+mean_seg0_subseg0_DNase covar_DNase 
+1 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K4me2 
+mean_seg0_subseg0_H3K4me2 covar_H3K4me2 
+2 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K27ac 
+mean_seg0_subseg0_H3K27ac covar_H3K27ac 
+3 
+1 
+0 mc_asinh_norm_seg0_subseg0_H2A_2EZ 
+mean_seg0_subseg0_H2A_2EZ covar_H2A_2EZ 
+4 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K9me3 
+mean_seg0_subseg0_H3K9me3 covar_H3K9me3 
+5 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K4me1 
+mean_seg0_subseg0_H3K4me1 covar_H3K4me1 
+6 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K27me3 
+mean_seg0_subseg0_H3K27me3 covar_H3K27me3 
+7 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K9ac 
+mean_seg0_subseg0_H3K9ac covar_H3K9ac 
+8 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K4me3 
+mean_seg0_subseg0_H3K4me3 covar_H3K4me3 
+9 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K36me3 
+mean_seg0_subseg0_H3K36me3 covar_H3K36me3 
+10 
+1 
+0 mc_asinh_norm_seg0_subseg0_H3K79me2 
+mean_seg0_subseg0_H3K79me2 covar_H3K79me2 
+11 
+1 
+0 mc_asinh_norm_seg0_subseg0_H4K20me1 
+mean_seg0_subseg0_H4K20me1 covar_H4K20me1 
+12 
+1 
+0 mc_asinh_norm_seg1_subseg0_DNase 
+mean_seg1_subseg0_DNase covar_DNase 
+13 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K4me2 
+mean_seg1_subseg0_H3K4me2 covar_H3K4me2 
+14 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K27ac 
+mean_seg1_subseg0_H3K27ac covar_H3K27ac 
+15 
+1 
+0 mc_asinh_norm_seg1_subseg0_H2A_2EZ 
+mean_seg1_subseg0_H2A_2EZ covar_H2A_2EZ 
+16 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K9me3 
+mean_seg1_subseg0_H3K9me3 covar_H3K9me3 
+17 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K4me1 
+mean_seg1_subseg0_H3K4me1 covar_H3K4me1 
+18 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K27me3 
+mean_seg1_subseg0_H3K27me3 covar_H3K27me3 
+19 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K9ac 
+mean_seg1_subseg0_H3K9ac covar_H3K9ac 
+20 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K4me3 
+mean_seg1_subseg0_H3K4me3 covar_H3K4me3 
+21 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K36me3 
+mean_seg1_subseg0_H3K36me3 covar_H3K36me3 
+22 
+1 
+0 mc_asinh_norm_seg1_subseg0_H3K79me2 
+mean_seg1_subseg0_H3K79me2 covar_H3K79me2 
+23 
+1 
+0 mc_asinh_norm_seg1_subseg0_H4K20me1 
+mean_seg1_subseg0_H4K20me1 covar_H4K20me1 
+24 
+1 
+0 mc_asinh_norm_seg2_subseg0_DNase 
+mean_seg2_subseg0_DNase covar_DNase 
+25 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K4me2 
+mean_seg2_subseg0_H3K4me2 covar_H3K4me2 
+26 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K27ac 
+mean_seg2_subseg0_H3K27ac covar_H3K27ac 
+27 
+1 
+0 mc_asinh_norm_seg2_subseg0_H2A_2EZ 
+mean_seg2_subseg0_H2A_2EZ covar_H2A_2EZ 
+28 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K9me3 
+mean_seg2_subseg0_H3K9me3 covar_H3K9me3 
+29 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K4me1 
+mean_seg2_subseg0_H3K4me1 covar_H3K4me1 
+30 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K27me3 
+mean_seg2_subseg0_H3K27me3 covar_H3K27me3 
+31 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K9ac 
+mean_seg2_subseg0_H3K9ac covar_H3K9ac 
+32 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K4me3 
+mean_seg2_subseg0_H3K4me3 covar_H3K4me3 
+33 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K36me3 
+mean_seg2_subseg0_H3K36me3 covar_H3K36me3 
+34 
+1 
+0 mc_asinh_norm_seg2_subseg0_H3K79me2 
+mean_seg2_subseg0_H3K79me2 covar_H3K79me2 
+35 
+1 
+0 mc_asinh_norm_seg2_subseg0_H4K20me1 
+mean_seg2_subseg0_H4K20me1 covar_H4K20me1 
+36 
+1 
+0 mc_asinh_norm_seg3_subseg0_DNase 
+mean_seg3_subseg0_DNase covar_DNase 
+37 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K4me2 
+mean_seg3_subseg0_H3K4me2 covar_H3K4me2 
+38 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K27ac 
+mean_seg3_subseg0_H3K27ac covar_H3K27ac 
+39 
+1 
+0 mc_asinh_norm_seg3_subseg0_H2A_2EZ 
+mean_seg3_subseg0_H2A_2EZ covar_H2A_2EZ 
+40 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K9me3 
+mean_seg3_subseg0_H3K9me3 covar_H3K9me3 
+41 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K4me1 
+mean_seg3_subseg0_H3K4me1 covar_H3K4me1 
+42 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K27me3 
+mean_seg3_subseg0_H3K27me3 covar_H3K27me3 
+43 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K9ac 
+mean_seg3_subseg0_H3K9ac covar_H3K9ac 
+44 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K4me3 
+mean_seg3_subseg0_H3K4me3 covar_H3K4me3 
+45 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K36me3 
+mean_seg3_subseg0_H3K36me3 covar_H3K36me3 
+46 
+1 
+0 mc_asinh_norm_seg3_subseg0_H3K79me2 
+mean_seg3_subseg0_H3K79me2 covar_H3K79me2 
+47 
+1 
+0 mc_asinh_norm_seg3_subseg0_H4K20me1 
+mean_seg3_subseg0_H4K20me1 covar_H4K20me1 
+48 
+1 
+0 mc_asinh_norm_seg4_subseg0_DNase 
+mean_seg4_subseg0_DNase covar_DNase 
+49 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K4me2 
+mean_seg4_subseg0_H3K4me2 covar_H3K4me2 
+50 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K27ac 
+mean_seg4_subseg0_H3K27ac covar_H3K27ac 
+51 
+1 
+0 mc_asinh_norm_seg4_subseg0_H2A_2EZ 
+mean_seg4_subseg0_H2A_2EZ covar_H2A_2EZ 
+52 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K9me3 
+mean_seg4_subseg0_H3K9me3 covar_H3K9me3 
+53 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K4me1 
+mean_seg4_subseg0_H3K4me1 covar_H3K4me1 
+54 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K27me3 
+mean_seg4_subseg0_H3K27me3 covar_H3K27me3 
+55 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K9ac 
+mean_seg4_subseg0_H3K9ac covar_H3K9ac 
+56 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K4me3 
+mean_seg4_subseg0_H3K4me3 covar_H3K4me3 
+57 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K36me3 
+mean_seg4_subseg0_H3K36me3 covar_H3K36me3 
+58 
+1 
+0 mc_asinh_norm_seg4_subseg0_H3K79me2 
+mean_seg4_subseg0_H3K79me2 covar_H3K79me2 
+59 
+1 
+0 mc_asinh_norm_seg4_subseg0_H4K20me1 
+mean_seg4_subseg0_H4K20me1 covar_H4K20me1 
+60 
+1 
+0 mc_asinh_norm_seg5_subseg0_DNase 
+mean_seg5_subseg0_DNase covar_DNase 
+61 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K4me2 
+mean_seg5_subseg0_H3K4me2 covar_H3K4me2 
+62 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K27ac 
+mean_seg5_subseg0_H3K27ac covar_H3K27ac 
+63 
+1 
+0 mc_asinh_norm_seg5_subseg0_H2A_2EZ 
+mean_seg5_subseg0_H2A_2EZ covar_H2A_2EZ 
+64 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K9me3 
+mean_seg5_subseg0_H3K9me3 covar_H3K9me3 
+65 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K4me1 
+mean_seg5_subseg0_H3K4me1 covar_H3K4me1 
+66 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K27me3 
+mean_seg5_subseg0_H3K27me3 covar_H3K27me3 
+67 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K9ac 
+mean_seg5_subseg0_H3K9ac covar_H3K9ac 
+68 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K4me3 
+mean_seg5_subseg0_H3K4me3 covar_H3K4me3 
+69 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K36me3 
+mean_seg5_subseg0_H3K36me3 covar_H3K36me3 
+70 
+1 
+0 mc_asinh_norm_seg5_subseg0_H3K79me2 
+mean_seg5_subseg0_H3K79me2 covar_H3K79me2 
+71 
+1 
+0 mc_asinh_norm_seg5_subseg0_H4K20me1 
+mean_seg5_subseg0_H4K20me1 covar_H4K20me1 
+72 
+1 
+0 mc_asinh_norm_seg6_subseg0_DNase 
+mean_seg6_subseg0_DNase covar_DNase 
+73 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K4me2 
+mean_seg6_subseg0_H3K4me2 covar_H3K4me2 
+74 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K27ac 
+mean_seg6_subseg0_H3K27ac covar_H3K27ac 
+75 
+1 
+0 mc_asinh_norm_seg6_subseg0_H2A_2EZ 
+mean_seg6_subseg0_H2A_2EZ covar_H2A_2EZ 
+76 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K9me3 
+mean_seg6_subseg0_H3K9me3 covar_H3K9me3 
+77 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K4me1 
+mean_seg6_subseg0_H3K4me1 covar_H3K4me1 
+78 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K27me3 
+mean_seg6_subseg0_H3K27me3 covar_H3K27me3 
+79 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K9ac 
+mean_seg6_subseg0_H3K9ac covar_H3K9ac 
+80 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K4me3 
+mean_seg6_subseg0_H3K4me3 covar_H3K4me3 
+81 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K36me3 
+mean_seg6_subseg0_H3K36me3 covar_H3K36me3 
+82 
+1 
+0 mc_asinh_norm_seg6_subseg0_H3K79me2 
+mean_seg6_subseg0_H3K79me2 covar_H3K79me2 
+83 
+1 
+0 mc_asinh_norm_seg6_subseg0_H4K20me1 
+mean_seg6_subseg0_H4K20me1 covar_H4K20me1 
+84 
+1 
+0 mc_asinh_norm_seg7_subseg0_DNase 
+mean_seg7_subseg0_DNase covar_DNase 
+85 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K4me2 
+mean_seg7_subseg0_H3K4me2 covar_H3K4me2 
+86 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K27ac 
+mean_seg7_subseg0_H3K27ac covar_H3K27ac 
+87 
+1 
+0 mc_asinh_norm_seg7_subseg0_H2A_2EZ 
+mean_seg7_subseg0_H2A_2EZ covar_H2A_2EZ 
+88 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K9me3 
+mean_seg7_subseg0_H3K9me3 covar_H3K9me3 
+89 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K4me1 
+mean_seg7_subseg0_H3K4me1 covar_H3K4me1 
+90 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K27me3 
+mean_seg7_subseg0_H3K27me3 covar_H3K27me3 
+91 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K9ac 
+mean_seg7_subseg0_H3K9ac covar_H3K9ac 
+92 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K4me3 
+mean_seg7_subseg0_H3K4me3 covar_H3K4me3 
+93 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K36me3 
+mean_seg7_subseg0_H3K36me3 covar_H3K36me3 
+94 
+1 
+0 mc_asinh_norm_seg7_subseg0_H3K79me2 
+mean_seg7_subseg0_H3K79me2 covar_H3K79me2 
+95 
+1 
+0 mc_asinh_norm_seg7_subseg0_H4K20me1 
+mean_seg7_subseg0_H4K20me1 covar_H4K20me1 
+
+
+% Mixtures of components
+96 
+0 
+1 
+mx_seg0_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_DNase 
+1 
+1 
+mx_seg0_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K4me2 
+2 
+1 
+mx_seg0_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K27ac 
+3 
+1 
+mx_seg0_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H2A_2EZ 
+4 
+1 
+mx_seg0_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K9me3 
+5 
+1 
+mx_seg0_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K4me1 
+6 
+1 
+mx_seg0_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K27me3 
+7 
+1 
+mx_seg0_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K9ac 
+8 
+1 
+mx_seg0_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K4me3 
+9 
+1 
+mx_seg0_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K36me3 
+10 
+1 
+mx_seg0_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H3K79me2 
+11 
+1 
+mx_seg0_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_H4K20me1 
+12 
+1 
+mx_seg1_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_DNase 
+13 
+1 
+mx_seg1_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K4me2 
+14 
+1 
+mx_seg1_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K27ac 
+15 
+1 
+mx_seg1_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H2A_2EZ 
+16 
+1 
+mx_seg1_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K9me3 
+17 
+1 
+mx_seg1_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K4me1 
+18 
+1 
+mx_seg1_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K27me3 
+19 
+1 
+mx_seg1_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K9ac 
+20 
+1 
+mx_seg1_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K4me3 
+21 
+1 
+mx_seg1_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K36me3 
+22 
+1 
+mx_seg1_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H3K79me2 
+23 
+1 
+mx_seg1_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_H4K20me1 
+24 
+1 
+mx_seg2_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_DNase 
+25 
+1 
+mx_seg2_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K4me2 
+26 
+1 
+mx_seg2_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K27ac 
+27 
+1 
+mx_seg2_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H2A_2EZ 
+28 
+1 
+mx_seg2_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K9me3 
+29 
+1 
+mx_seg2_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K4me1 
+30 
+1 
+mx_seg2_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K27me3 
+31 
+1 
+mx_seg2_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K9ac 
+32 
+1 
+mx_seg2_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K4me3 
+33 
+1 
+mx_seg2_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K36me3 
+34 
+1 
+mx_seg2_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H3K79me2 
+35 
+1 
+mx_seg2_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_H4K20me1 
+36 
+1 
+mx_seg3_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_DNase 
+37 
+1 
+mx_seg3_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K4me2 
+38 
+1 
+mx_seg3_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K27ac 
+39 
+1 
+mx_seg3_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H2A_2EZ 
+40 
+1 
+mx_seg3_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K9me3 
+41 
+1 
+mx_seg3_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K4me1 
+42 
+1 
+mx_seg3_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K27me3 
+43 
+1 
+mx_seg3_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K9ac 
+44 
+1 
+mx_seg3_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K4me3 
+45 
+1 
+mx_seg3_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K36me3 
+46 
+1 
+mx_seg3_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H3K79me2 
+47 
+1 
+mx_seg3_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_H4K20me1 
+48 
+1 
+mx_seg4_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_DNase 
+49 
+1 
+mx_seg4_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K4me2 
+50 
+1 
+mx_seg4_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K27ac 
+51 
+1 
+mx_seg4_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H2A_2EZ 
+52 
+1 
+mx_seg4_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K9me3 
+53 
+1 
+mx_seg4_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K4me1 
+54 
+1 
+mx_seg4_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K27me3 
+55 
+1 
+mx_seg4_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K9ac 
+56 
+1 
+mx_seg4_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K4me3 
+57 
+1 
+mx_seg4_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K36me3 
+58 
+1 
+mx_seg4_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H3K79me2 
+59 
+1 
+mx_seg4_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_H4K20me1 
+60 
+1 
+mx_seg5_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_DNase 
+61 
+1 
+mx_seg5_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K4me2 
+62 
+1 
+mx_seg5_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K27ac 
+63 
+1 
+mx_seg5_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H2A_2EZ 
+64 
+1 
+mx_seg5_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K9me3 
+65 
+1 
+mx_seg5_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K4me1 
+66 
+1 
+mx_seg5_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K27me3 
+67 
+1 
+mx_seg5_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K9ac 
+68 
+1 
+mx_seg5_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K4me3 
+69 
+1 
+mx_seg5_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K36me3 
+70 
+1 
+mx_seg5_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H3K79me2 
+71 
+1 
+mx_seg5_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_H4K20me1 
+72 
+1 
+mx_seg6_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_DNase 
+73 
+1 
+mx_seg6_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K4me2 
+74 
+1 
+mx_seg6_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K27ac 
+75 
+1 
+mx_seg6_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H2A_2EZ 
+76 
+1 
+mx_seg6_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K9me3 
+77 
+1 
+mx_seg6_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K4me1 
+78 
+1 
+mx_seg6_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K27me3 
+79 
+1 
+mx_seg6_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K9ac 
+80 
+1 
+mx_seg6_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K4me3 
+81 
+1 
+mx_seg6_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K36me3 
+82 
+1 
+mx_seg6_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H3K79me2 
+83 
+1 
+mx_seg6_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_H4K20me1 
+84 
+1 
+mx_seg7_subseg0_DNase 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_DNase 
+85 
+1 
+mx_seg7_subseg0_H3K4me2 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K4me2 
+86 
+1 
+mx_seg7_subseg0_H3K27ac 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K27ac 
+87 
+1 
+mx_seg7_subseg0_H2A_2EZ 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H2A_2EZ 
+88 
+1 
+mx_seg7_subseg0_H3K9me3 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K9me3 
+89 
+1 
+mx_seg7_subseg0_H3K4me1 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K4me1 
+90 
+1 
+mx_seg7_subseg0_H3K27me3 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K27me3 
+91 
+1 
+mx_seg7_subseg0_H3K9ac 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K9ac 
+92 
+1 
+mx_seg7_subseg0_H3K4me3 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K4me3 
+93 
+1 
+mx_seg7_subseg0_H3K36me3 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K36me3 
+94 
+1 
+mx_seg7_subseg0_H3K79me2 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H3K79me2 
+95 
+1 
+mx_seg7_subseg0_H4K20me1 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_H4K20me1 
+

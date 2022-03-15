@@ -1,0 +1,7 @@
+
+{
+    "valid_chroms": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],
+    "hg19_chr_sizes_file": "supp/hg19.chrom.sizes",
+    "hg19_chr_arms_sizes_file": "supp/hg19.chrom.arms.sizes",
+    "hg38_chr_sizes_file": "supp/hg38.chrom.sizes"
+}

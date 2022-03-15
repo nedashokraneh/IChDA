@@ -1,0 +1,276 @@
+% Structure File Identification Information
+0 segCountDown 0 2 D 0 1 1 seg 0 
+1 seg 0 8 D 0 1 0 
+2 presence__emb1 0 2 D 0 1 0 
+3 emb1 0 0 C 1 presence__emb1 0 2 0 1 seg 0 
+4 presence__emb2 0 2 D 0 1 0 
+5 emb2 0 0 C 1 presence__emb2 0 2 0 1 seg 0 
+6 presence__emb3 0 2 D 0 1 0 
+7 emb3 0 0 C 1 presence__emb3 0 2 0 1 seg 0 
+8 presence__emb4 0 2 D 0 1 0 
+9 emb4 0 0 C 1 presence__emb4 0 2 0 1 seg 0 
+10 presence__emb5 0 2 D 0 1 0 
+11 emb5 0 0 C 1 presence__emb5 0 2 0 1 seg 0 
+12 presence__emb6 0 2 D 0 1 0 
+13 emb6 0 0 C 1 presence__emb6 0 2 0 1 seg 0 
+14 presence__emb7 0 2 D 0 1 0 
+15 emb7 0 0 C 1 presence__emb7 0 2 0 1 seg 0 
+16 presence__emb8 0 2 D 0 1 0 
+17 emb8 0 0 C 1 presence__emb8 0 2 0 1 seg 0 
+18 frameIndex 1 2000000 D 0 1 0 
+19 ruler 1 2 D 0 1 1 frameIndex 0 
+20 segCountDown 1 2 D 0 1 4 segTransition 0 ruler 0 seg 0 segCountDown -1 
+21 segTransition 1 3 D 0 1 2 segCountDown -1 seg -1 
+22 seg 1 8 D 1 segTransition 0 3 1 seg -1 1 seg -1 1 seg -1 
+23 presence__emb1 1 2 D 0 1 0 
+24 emb1 1 0 C 1 presence__emb1 0 2 0 1 seg 0 
+25 presence__emb2 1 2 D 0 1 0 
+26 emb2 1 0 C 1 presence__emb2 0 2 0 1 seg 0 
+27 presence__emb3 1 2 D 0 1 0 
+28 emb3 1 0 C 1 presence__emb3 0 2 0 1 seg 0 
+29 presence__emb4 1 2 D 0 1 0 
+30 emb4 1 0 C 1 presence__emb4 0 2 0 1 seg 0 
+31 presence__emb5 1 2 D 0 1 0 
+32 emb5 1 0 C 1 presence__emb5 0 2 0 1 seg 0 
+33 presence__emb6 1 2 D 0 1 0 
+34 emb6 1 0 C 1 presence__emb6 0 2 0 1 seg 0 
+35 presence__emb7 1 2 D 0 1 0 
+36 emb7 1 0 C 1 presence__emb7 0 2 0 1 seg 0 
+37 presence__emb8 1 2 D 0 1 0 
+38 emb8 1 0 C 1 presence__emb8 0 2 0 1 seg 0 
+1 1 
+@@@!!!TRIFILE_END_OF_ID_STRING!!!@@@ 
+
+% ---
+% GMTK Triangulation File Created: Monday March 14 2022, 23:55:36 PDT
+% Options-: triangulationHeuristic: completed, jtWeight: T, jtwUB: F, jtwPUI: 0.000000, jtwMC: F, jtwSNSC: 1.000000, jtwDNSC: 1.000000, pfCobWeight: 0.000000, findBestBoundary: T, traverseFraction: 1.000000, noBoundaryMemoize: F, forceLeftRight: , boundaryHeuristic: S, 
+% ---
+
+
+% ---
+% --- M, number of chunks in which to find interface boundary
+1 
+
+% ---
+% --- S, chunk skip
+1 
+
+% ---
+% --- interface method
+LEFT 
+
+% ---
+% --- boundary method
+Left_interface:Run_Bdry_Alg(T),Bnd_Heurs(S),TravFrac(1.000000),Tri_Heur(completed) 
+
+% ---
+% --- P partition information: variables and their neighbors
+% segCountDown(0) : seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% seg(0) : segCountDown(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb1(0) : segCountDown(0), seg(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb1(0) : segCountDown(0), seg(0), presence__emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb2(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb2(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb3(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb3(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb4(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb4(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb5(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb5(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb6(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb6(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb7(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb7(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% presence__emb8(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% emb8(0) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), ruler(1), segCountDown(1), segTransition(1), seg(1),
+% ruler(1) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), segCountDown(1), segTransition(1), seg(1),
+% segCountDown(1) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segTransition(1), seg(1),
+% segTransition(1) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), seg(1),
+% seg(1) : segCountDown(0), seg(0), presence__emb1(0), emb1(0), presence__emb2(0), emb2(0), presence__emb3(0), emb3(0), presence__emb4(0), emb4(0), presence__emb5(0), emb5(0), presence__emb6(0), emb6(0), presence__emb7(0), emb7(0), presence__emb8(0), emb8(0), ruler(1), segCountDown(1), segTransition(1),
+% --- P partition definition
+P_PARTITION 22 segCountDown 0 seg 0 presence__emb1 0 emb1 0 presence__emb2 0 emb2 0 presence__emb3 0 emb3 0 presence__emb4 0 emb4 0 presence__emb5 0 emb5 0 presence__emb6 0 emb6 0 presence__emb7 0 emb7 0 presence__emb8 0 emb8 0 ruler 1 segCountDown 1 segTransition 1 seg 1 
+
+% ---
+% --- C partition information: variables and their neighbors
+% frameIndex(1) : segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% segCountDown(1) : frameIndex(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% seg(1) : frameIndex(1), segCountDown(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb1(1) : frameIndex(1), segCountDown(1), seg(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb1(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb2(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb2(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb3(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb3(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb4(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb4(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb5(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb5(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb6(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb6(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb7(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb7(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% presence__emb8(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% emb8(1) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% ruler(2) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), segCountDown(2), segTransition(2), seg(2),
+% segCountDown(2) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segTransition(2), seg(2),
+% segTransition(2) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), seg(2),
+% seg(2) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2),
+% --- C partition definition
+C_PARTITION 23 frameIndex 1 segCountDown 1 seg 1 presence__emb1 1 emb1 1 presence__emb2 1 emb2 1 presence__emb3 1 emb3 1 presence__emb4 1 emb4 1 presence__emb5 1 emb5 1 presence__emb6 1 emb6 1 presence__emb7 1 emb7 1 presence__emb8 1 emb8 1 ruler 2 segCountDown 2 segTransition 2 seg 2 
+
+% ---
+% --- E partition information: variables and their neighbors
+% frameIndex(2) : segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% segCountDown(2) : frameIndex(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% seg(2) : frameIndex(2), segCountDown(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% presence__emb1(2) : frameIndex(2), segCountDown(2), seg(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% emb1(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% presence__emb2(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% emb2(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% presence__emb3(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% emb3(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% presence__emb4(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% emb4(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% presence__emb5(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% emb5(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% presence__emb6(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% emb6(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), presence__emb7(2), emb7(2), presence__emb8(2), emb8(2),
+% presence__emb7(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), emb7(2), presence__emb8(2), emb8(2),
+% emb7(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), presence__emb8(2), emb8(2),
+% presence__emb8(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), emb8(2),
+% emb8(2) : frameIndex(2), segCountDown(2), seg(2), presence__emb1(2), emb1(2), presence__emb2(2), emb2(2), presence__emb3(2), emb3(2), presence__emb4(2), emb4(2), presence__emb5(2), emb5(2), presence__emb6(2), emb6(2), presence__emb7(2), emb7(2), presence__emb8(2),
+% --- E partition definition
+E_PARTITION 19 frameIndex 2 segCountDown 2 seg 2 presence__emb1 2 emb1 2 presence__emb2 2 emb2 2 presence__emb3 2 emb3 2 presence__emb4 2 emb4 2 presence__emb5 2 emb5 2 presence__emb6 2 emb6 2 presence__emb7 2 emb7 2 presence__emb8 2 emb8 2 
+
+% ---
+% --- PC information : variables and their neighbors
+% segCountDown(1) : frameIndex(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% seg(1) : frameIndex(1), segCountDown(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2), seg(2),
+% --- PC interface definition
+PC_PARTITION 2 segCountDown 1 seg 1 
+
+% ---
+% --- CE information : variables and their neighbors
+% segCountDown(2) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segTransition(2), seg(2),
+% seg(2) : frameIndex(1), segCountDown(1), seg(1), presence__emb1(1), emb1(1), presence__emb2(1), emb2(1), presence__emb3(1), emb3(1), presence__emb4(1), emb4(1), presence__emb5(1), emb5(1), presence__emb6(1), emb6(1), presence__emb7(1), emb7(1), presence__emb8(1), emb8(1), ruler(2), segCountDown(2), segTransition(2),
+% --- CE interface definition
+CE_PARTITION 2 segCountDown 2 seg 2 
+
+% ---
+% ---- P Partitions Cliques and their weights
+% ---- 1 total max-cliques 
+% ---- Triangulation came from method: 1-completed
+% 0 : 22  2.584331
+%    segCountDown(0)
+%    seg(0)
+%    presence__emb1(0)
+%    emb1(0)
+%    presence__emb2(0)
+%    emb2(0)
+%    presence__emb3(0)
+%    emb3(0)
+%    presence__emb4(0)
+%    emb4(0)
+%    presence__emb5(0)
+%    emb5(0)
+%    presence__emb6(0)
+%    emb6(0)
+%    presence__emb7(0)
+%    emb7(0)
+%    presence__emb8(0)
+%    emb8(0)
+%    ruler(1)
+%    segCountDown(1)
+%    segTransition(1)
+%    seg(1)
+% Maximum clique state space = 1e2.584331, total state space = 1e2.584331
+1-completed 
+1 
+0 22 segCountDown 0 seg 0 presence__emb1 0 emb1 0 presence__emb2 0 emb2 0 presence__emb3 0 emb3 0 presence__emb4 0 emb4 0 presence__emb5 0 emb5 0 presence__emb6 0 emb6 0 presence__emb7 0 emb7 0 presence__emb8 0 emb8 0 ruler 1 segCountDown 1 segTransition 1 seg 1 
+
+% ---
+% ---- C Partitions Cliques and their weights
+% ---- 1 total max-cliques 
+% ---- Triangulation came from method: 1-completed
+% 0 : 23  2.885361
+%    frameIndex(1)
+%    segCountDown(1)
+%    seg(1)
+%    presence__emb1(1)
+%    emb1(1)
+%    presence__emb2(1)
+%    emb2(1)
+%    presence__emb3(1)
+%    emb3(1)
+%    presence__emb4(1)
+%    emb4(1)
+%    presence__emb5(1)
+%    emb5(1)
+%    presence__emb6(1)
+%    emb6(1)
+%    presence__emb7(1)
+%    emb7(1)
+%    presence__emb8(1)
+%    emb8(1)
+%    ruler(2)
+%    segCountDown(2)
+%    segTransition(2)
+%    seg(2)
+% Maximum clique state space = 1e2.885361, total state space = 1e2.885361
+1-completed 
+1 
+0 23 frameIndex 1 segCountDown 1 seg 1 presence__emb1 1 emb1 1 presence__emb2 1 emb2 1 presence__emb3 1 emb3 1 presence__emb4 1 emb4 1 presence__emb5 1 emb5 1 presence__emb6 1 emb6 1 presence__emb7 1 emb7 1 presence__emb8 1 emb8 1 ruler 2 segCountDown 2 segTransition 2 seg 2 
+
+% ---
+% ---- E Partitions Cliques and their weights
+% ---- 1 total max-cliques 
+% ---- Triangulation came from method: 1-completed
+% 0 : 19  1.204120
+%    frameIndex(2)
+%    segCountDown(2)
+%    seg(2)
+%    presence__emb1(2)
+%    emb1(2)
+%    presence__emb2(2)
+%    emb2(2)
+%    presence__emb3(2)
+%    emb3(2)
+%    presence__emb4(2)
+%    emb4(2)
+%    presence__emb5(2)
+%    emb5(2)
+%    presence__emb6(2)
+%    emb6(2)
+%    presence__emb7(2)
+%    emb7(2)
+%    presence__emb8(2)
+%    emb8(2)
+% Maximum clique state space = 1e1.204120, total state space = 1e1.204120
+1-completed 
+1 
+0 19 frameIndex 2 segCountDown 2 seg 2 presence__emb1 2 emb1 2 presence__emb2 2 emb2 2 presence__emb3 2 emb3 2 presence__emb4 2 emb4 2 presence__emb5 2 emb5 2 presence__emb6 2 emb6 2 presence__emb7 2 emb7 2 presence__emb8 2 emb8 2 
+
+
+% ----
+% ----
+% ----
+% ---- Printing final clique set and clique weights---
+%   --- Prologue summary, 1 cliques
+%    --- P curWeight = 2.584331
+%   --- Prologue max clique weight = 2.584331, total weight = 2.584331, jt_weight = 1.000000
+%   --- Chunk summary, 1 cliques
+%    --- C curWeight = 2.885361
+%   --- Chunk max clique weight = 2.885361, total Cx1 weight = 2.885361, per-chunk total C weight = 2.885361, jt_weight = 1.000000
+%   --- Epilogue summary, 1 cliques
+%    --- E curWeight = 1.204120
+%   --- Epilogue max clique weight = 1.204120, total weight = 1.204120, jt_weight = 1.000000
+% --- Final set (P,Cx1,E) has max clique weight = 2.885361, total state space = 3.067443 ---
+% --- Total weight when unrolling 1x = 3.067443 ---
+% --- Total weight when unrolling 2x = 3.286905 ---
+% --- Total weight when unrolling 5x = 3.627366 ---
+% --- Total weight when unrolling 10x = 3.907411 ---
+% --- Total weight when unrolling 20x = 4.197556 ---
+% --- Total weight when unrolling 50x = 4.588832 ---
+% --- Total weight when unrolling 100x = 4.887617 ---
+% --- Total weight when unrolling 500x = 5.584783 ---
+% --- Total weight when unrolling 1000x = 5.885587 ---

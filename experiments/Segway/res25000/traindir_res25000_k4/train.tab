@@ -1,0 +1,24 @@
+name	value
+distribution	asinh_norm
+dont_train_filename	traindir_res25000_k4/auxiliary/dont_train.list
+include_coords_filename	
+input_master_filename	traindir_res25000_k4/params/input.master
+len_seg_strength	0
+max_frames	2000000
+minibatch_fraction	-1
+num_instances	1
+num_mix_components	1
+num_segs	4
+num_subsegs	1
+output_label	seg
+params_filename	traindir_res25000_k4/params/params.params
+resolution	1
+ruler_scale	1
+seg_table_filename	../../data/supp/hard_constraint.txt
+segtransition_weight_scale	1.0
+structure_filename	traindir_res25000_k4/segway.str
+supervision_filename	
+validation_coords_filename	
+validation_fraction	
+var_floor	
+virtual_evidence_filename	

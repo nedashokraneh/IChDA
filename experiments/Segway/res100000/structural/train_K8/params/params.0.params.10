@@ -1,0 +1,807 @@
+
+% Dense CPTs
+5 
+0 
+start_seg 
+0 % number parents
+8 % cardinalities
+1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 1.24999999999999972e-01 
+1 
+seg_subseg 
+1 % number parents
+8 1 % cardinalities
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+2 
+seg_seg 
+1 % number parents
+8 8 % cardinalities
+0.00000000000000000e+00 5.72537838862061665e-01 3.80290503472897369e-03 2.83304686363612779e-01 1.94423136879774451e-02 9.23350828806095126e-04 6.56382928841779123e-02 5.43506123386350778e-02 
+3.78614989809337998e-01 0.00000000000000000e+00 8.85532130762241503e-20 3.19762779523754745e-02 4.39412253722645633e-03 5.13610436235132695e-01 7.56316081580717551e-06 7.13966103051115325e-02 
+1.29675290347306665e-02 2.67823892880225569e-11 0.00000000000000000e+00 8.95097203126836005e-26 6.25379070265856374e-01 3.09655646788306187e-18 3.61536989687013199e-01 1.16410985617365357e-04 
+5.87093009045051017e-01 9.78583252198122477e-02 2.36681200213161012e-19 0.00000000000000000e+00 1.10841322468245379e-01 1.46318962946495219e-02 1.39961024314479238e-01 4.96144226577626135e-02 
+6.66764632945995583e-02 7.89637193063586103e-03 3.26752642676162053e-01 1.52348466688462414e-01 0.00000000000000000e+00 6.84500628994326039e-17 2.77284965411558892e-01 1.69041089998581168e-01 
+1.66694832546139121e-02 9.32458151559607651e-01 3.40746987986191520e-17 4.95972452470743591e-03 5.31027373614906340e-16 0.00000000000000000e+00 3.13055289074703316e-20 4.59126406610704668e-02 
+2.33093636939039228e-01 3.46935324548539476e-07 1.76010460520368145e-01 2.02732422854878136e-01 3.88163132734540672e-01 9.26751497874118216e-19 0.00000000000000000e+00 1.58491592628006877e-11 
+1.46810888988420624e-01 4.63207490256638321e-01 8.63595022043038237e-10 4.53098914178639081e-02 2.00180580437739980e-01 1.44491120935767603e-01 2.70999746288644638e-08 0.00000000000000000e+00 
+3 
+seg_subseg_subseg 
+2 % number parents
+8 1 1 % cardinalities
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+1.00000000000000000e+00 
+4 
+segCountDown_seg_segTransition 
+2 % number parents
+2 8 3 % cardinalities
+7.57630219911762048e-01 7.57630219911841016e-03 2.34793477889119584e-01 
+7.61899685891141321e-01 7.61899685891272334e-03 2.30481317249946055e-01 
+9.00377031823470397e-01 9.00377031823516687e-03 9.06191978582944341e-02 
+8.11799487119104990e-01 8.11799487118567906e-03 1.80082518009709286e-01 
+7.87758178914467200e-01 7.87758178914381955e-03 2.04364239296388972e-01 
+9.16817439969494496e-01 9.16817439969486170e-03 7.40143856308107112e-02 
+8.66723775290772047e-01 8.66723775290781026e-03 1.24608986956320167e-01 
+8.61222729535782050e-01 8.61222729535873581e-03 1.30165043168859268e-01 
+9.90099009900987759e-01 9.90099009901222911e-03 0.00000000000000000e+00 
+9.90099009900989313e-01 9.90099009901071643e-03 0.00000000000000000e+00 
+9.90099009900989868e-01 9.90099009901011795e-03 0.00000000000000000e+00 
+9.90099009900996641e-01 9.90099009900340804e-03 0.00000000000000000e+00 
+9.90099009900990423e-01 9.90099009900957325e-03 0.00000000000000000e+00 
+9.90099009900989313e-01 9.90099009901073378e-03 0.00000000000000000e+00 
+9.90099009900989757e-01 9.90099009901029489e-03 0.00000000000000000e+00 
+9.90099009900992200e-01 9.90099009900780556e-03 0.00000000000000000e+00 
+
+
+% means
+64 
+0 
+mean_seg0_subseg0_emb1 1 -8.6055994034e-01 
+1 
+mean_seg0_subseg0_emb2 1 -4.1044589877e-01 
+2 
+mean_seg0_subseg0_emb3 1 4.4982695580e-01 
+3 
+mean_seg0_subseg0_emb4 1 7.2710472345e-01 
+4 
+mean_seg0_subseg0_emb5 1 -1.0894866288e-01 
+5 
+mean_seg0_subseg0_emb6 1 -3.6394175887e-01 
+6 
+mean_seg0_subseg0_emb7 1 1.0774552077e-01 
+7 
+mean_seg0_subseg0_emb8 1 -4.0107634664e-01 
+8 
+mean_seg1_subseg0_emb1 1 -4.5236870646e-01 
+9 
+mean_seg1_subseg0_emb2 1 6.4544044435e-02 
+10 
+mean_seg1_subseg0_emb3 1 1.7064484954e-01 
+11 
+mean_seg1_subseg0_emb4 1 6.5270197392e-01 
+12 
+mean_seg1_subseg0_emb5 1 -4.1752415895e-01 
+13 
+mean_seg1_subseg0_emb6 1 2.1993166208e-01 
+14 
+mean_seg1_subseg0_emb7 1 2.3802986741e-01 
+15 
+mean_seg1_subseg0_emb8 1 -9.5096789300e-02 
+16 
+mean_seg2_subseg0_emb1 1 -1.1797434092e+00 
+17 
+mean_seg2_subseg0_emb2 1 -5.1992601156e-01 
+18 
+mean_seg2_subseg0_emb3 1 1.3904738426e+00 
+19 
+mean_seg2_subseg0_emb4 1 5.9398037195e-01 
+20 
+mean_seg2_subseg0_emb5 1 -2.5849264860e-01 
+21 
+mean_seg2_subseg0_emb6 1 -1.2722821236e+00 
+22 
+mean_seg2_subseg0_emb7 1 9.4664967060e-01 
+23 
+mean_seg2_subseg0_emb8 1 -1.6987730563e-01 
+24 
+mean_seg3_subseg0_emb1 1 -6.4355209470e-02 
+25 
+mean_seg3_subseg0_emb2 1 -3.5691139102e-01 
+26 
+mean_seg3_subseg0_emb3 1 4.9923121929e-01 
+27 
+mean_seg3_subseg0_emb4 1 6.9934761524e-01 
+28 
+mean_seg3_subseg0_emb5 1 -3.0330696702e-01 
+29 
+mean_seg3_subseg0_emb6 1 6.5959140658e-02 
+30 
+mean_seg3_subseg0_emb7 1 6.5569347143e-01 
+31 
+mean_seg3_subseg0_emb8 1 8.2039201260e-01 
+32 
+mean_seg4_subseg0_emb1 1 -4.8940932751e-01 
+33 
+mean_seg4_subseg0_emb2 1 -2.1359095350e-02 
+34 
+mean_seg4_subseg0_emb3 1 8.8628411293e-01 
+35 
+mean_seg4_subseg0_emb4 1 4.8993209004e-01 
+36 
+mean_seg4_subseg0_emb5 1 -7.5533628464e-02 
+37 
+mean_seg4_subseg0_emb6 1 -6.2921059132e-01 
+38 
+mean_seg4_subseg0_emb7 1 8.5324913263e-01 
+39 
+mean_seg4_subseg0_emb8 1 6.1290276051e-01 
+40 
+mean_seg5_subseg0_emb1 1 -3.7482908368e-01 
+41 
+mean_seg5_subseg0_emb2 1 4.3291613460e-01 
+42 
+mean_seg5_subseg0_emb3 1 -1.1999572814e-01 
+43 
+mean_seg5_subseg0_emb4 1 8.9213782549e-01 
+44 
+mean_seg5_subseg0_emb5 1 -8.2335442305e-01 
+45 
+mean_seg5_subseg0_emb6 1 7.7548551559e-01 
+46 
+mean_seg5_subseg0_emb7 1 4.1198632121e-01 
+47 
+mean_seg5_subseg0_emb8 1 8.9345358312e-02 
+48 
+mean_seg6_subseg0_emb1 1 -9.1515731812e-01 
+49 
+mean_seg6_subseg0_emb2 1 -8.2175201178e-01 
+50 
+mean_seg6_subseg0_emb3 1 9.6874302626e-01 
+51 
+mean_seg6_subseg0_emb4 1 7.6251667738e-01 
+52 
+mean_seg6_subseg0_emb5 1 -3.7736911327e-03 
+53 
+mean_seg6_subseg0_emb6 1 -8.8047003746e-01 
+54 
+mean_seg6_subseg0_emb7 1 5.6886506081e-01 
+55 
+mean_seg6_subseg0_emb8 1 6.6713243723e-02 
+56 
+mean_seg7_subseg0_emb1 1 -9.5731467009e-02 
+57 
+mean_seg7_subseg0_emb2 1 7.0001465082e-01 
+58 
+mean_seg7_subseg0_emb3 1 4.0488725901e-01 
+59 
+mean_seg7_subseg0_emb4 1 7.1065664291e-01 
+60 
+mean_seg7_subseg0_emb5 1 -5.4532945156e-01 
+61 
+mean_seg7_subseg0_emb6 1 4.1266769171e-01 
+62 
+mean_seg7_subseg0_emb7 1 8.2138192654e-01 
+63 
+mean_seg7_subseg0_emb8 1 5.1707345247e-01 
+
+
+% diagonal covariance matrices
+8 
+0 
+covar_emb1 1 3.4531895071e-02 
+1 
+covar_emb2 1 8.7434560061e-02 
+2 
+covar_emb3 1 4.8933725804e-02 
+3 
+covar_emb4 1 1.3451076113e-02 
+4 
+covar_emb5 1 2.3382911459e-02 
+5 
+covar_emb6 1 3.4455057234e-02 
+6 
+covar_emb7 1 3.9305847138e-02 
+7 
+covar_emb8 1 9.5877461135e-02 
+
+
+% dense PMFs
+1 
+0 
+dpmf_always 1 1.00000000000000000e+00 
+
+
+% Components
+64 
+0 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb1 
+mean_seg0_subseg0_emb1 covar_emb1 
+1 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb2 
+mean_seg0_subseg0_emb2 covar_emb2 
+2 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb3 
+mean_seg0_subseg0_emb3 covar_emb3 
+3 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb4 
+mean_seg0_subseg0_emb4 covar_emb4 
+4 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb5 
+mean_seg0_subseg0_emb5 covar_emb5 
+5 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb6 
+mean_seg0_subseg0_emb6 covar_emb6 
+6 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb7 
+mean_seg0_subseg0_emb7 covar_emb7 
+7 
+1 
+0 mc_asinh_norm_seg0_subseg0_emb8 
+mean_seg0_subseg0_emb8 covar_emb8 
+8 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb1 
+mean_seg1_subseg0_emb1 covar_emb1 
+9 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb2 
+mean_seg1_subseg0_emb2 covar_emb2 
+10 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb3 
+mean_seg1_subseg0_emb3 covar_emb3 
+11 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb4 
+mean_seg1_subseg0_emb4 covar_emb4 
+12 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb5 
+mean_seg1_subseg0_emb5 covar_emb5 
+13 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb6 
+mean_seg1_subseg0_emb6 covar_emb6 
+14 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb7 
+mean_seg1_subseg0_emb7 covar_emb7 
+15 
+1 
+0 mc_asinh_norm_seg1_subseg0_emb8 
+mean_seg1_subseg0_emb8 covar_emb8 
+16 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb1 
+mean_seg2_subseg0_emb1 covar_emb1 
+17 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb2 
+mean_seg2_subseg0_emb2 covar_emb2 
+18 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb3 
+mean_seg2_subseg0_emb3 covar_emb3 
+19 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb4 
+mean_seg2_subseg0_emb4 covar_emb4 
+20 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb5 
+mean_seg2_subseg0_emb5 covar_emb5 
+21 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb6 
+mean_seg2_subseg0_emb6 covar_emb6 
+22 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb7 
+mean_seg2_subseg0_emb7 covar_emb7 
+23 
+1 
+0 mc_asinh_norm_seg2_subseg0_emb8 
+mean_seg2_subseg0_emb8 covar_emb8 
+24 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb1 
+mean_seg3_subseg0_emb1 covar_emb1 
+25 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb2 
+mean_seg3_subseg0_emb2 covar_emb2 
+26 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb3 
+mean_seg3_subseg0_emb3 covar_emb3 
+27 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb4 
+mean_seg3_subseg0_emb4 covar_emb4 
+28 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb5 
+mean_seg3_subseg0_emb5 covar_emb5 
+29 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb6 
+mean_seg3_subseg0_emb6 covar_emb6 
+30 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb7 
+mean_seg3_subseg0_emb7 covar_emb7 
+31 
+1 
+0 mc_asinh_norm_seg3_subseg0_emb8 
+mean_seg3_subseg0_emb8 covar_emb8 
+32 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb1 
+mean_seg4_subseg0_emb1 covar_emb1 
+33 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb2 
+mean_seg4_subseg0_emb2 covar_emb2 
+34 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb3 
+mean_seg4_subseg0_emb3 covar_emb3 
+35 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb4 
+mean_seg4_subseg0_emb4 covar_emb4 
+36 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb5 
+mean_seg4_subseg0_emb5 covar_emb5 
+37 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb6 
+mean_seg4_subseg0_emb6 covar_emb6 
+38 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb7 
+mean_seg4_subseg0_emb7 covar_emb7 
+39 
+1 
+0 mc_asinh_norm_seg4_subseg0_emb8 
+mean_seg4_subseg0_emb8 covar_emb8 
+40 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb1 
+mean_seg5_subseg0_emb1 covar_emb1 
+41 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb2 
+mean_seg5_subseg0_emb2 covar_emb2 
+42 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb3 
+mean_seg5_subseg0_emb3 covar_emb3 
+43 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb4 
+mean_seg5_subseg0_emb4 covar_emb4 
+44 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb5 
+mean_seg5_subseg0_emb5 covar_emb5 
+45 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb6 
+mean_seg5_subseg0_emb6 covar_emb6 
+46 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb7 
+mean_seg5_subseg0_emb7 covar_emb7 
+47 
+1 
+0 mc_asinh_norm_seg5_subseg0_emb8 
+mean_seg5_subseg0_emb8 covar_emb8 
+48 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb1 
+mean_seg6_subseg0_emb1 covar_emb1 
+49 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb2 
+mean_seg6_subseg0_emb2 covar_emb2 
+50 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb3 
+mean_seg6_subseg0_emb3 covar_emb3 
+51 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb4 
+mean_seg6_subseg0_emb4 covar_emb4 
+52 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb5 
+mean_seg6_subseg0_emb5 covar_emb5 
+53 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb6 
+mean_seg6_subseg0_emb6 covar_emb6 
+54 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb7 
+mean_seg6_subseg0_emb7 covar_emb7 
+55 
+1 
+0 mc_asinh_norm_seg6_subseg0_emb8 
+mean_seg6_subseg0_emb8 covar_emb8 
+56 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb1 
+mean_seg7_subseg0_emb1 covar_emb1 
+57 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb2 
+mean_seg7_subseg0_emb2 covar_emb2 
+58 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb3 
+mean_seg7_subseg0_emb3 covar_emb3 
+59 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb4 
+mean_seg7_subseg0_emb4 covar_emb4 
+60 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb5 
+mean_seg7_subseg0_emb5 covar_emb5 
+61 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb6 
+mean_seg7_subseg0_emb6 covar_emb6 
+62 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb7 
+mean_seg7_subseg0_emb7 covar_emb7 
+63 
+1 
+0 mc_asinh_norm_seg7_subseg0_emb8 
+mean_seg7_subseg0_emb8 covar_emb8 
+
+
+% Mixtures of components
+64 
+0 
+1 
+mx_seg0_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb1 
+1 
+1 
+mx_seg0_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb2 
+2 
+1 
+mx_seg0_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb3 
+3 
+1 
+mx_seg0_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb4 
+4 
+1 
+mx_seg0_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb5 
+5 
+1 
+mx_seg0_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb6 
+6 
+1 
+mx_seg0_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb7 
+7 
+1 
+mx_seg0_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg0_subseg0_emb8 
+8 
+1 
+mx_seg1_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb1 
+9 
+1 
+mx_seg1_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb2 
+10 
+1 
+mx_seg1_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb3 
+11 
+1 
+mx_seg1_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb4 
+12 
+1 
+mx_seg1_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb5 
+13 
+1 
+mx_seg1_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb6 
+14 
+1 
+mx_seg1_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb7 
+15 
+1 
+mx_seg1_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg1_subseg0_emb8 
+16 
+1 
+mx_seg2_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb1 
+17 
+1 
+mx_seg2_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb2 
+18 
+1 
+mx_seg2_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb3 
+19 
+1 
+mx_seg2_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb4 
+20 
+1 
+mx_seg2_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb5 
+21 
+1 
+mx_seg2_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb6 
+22 
+1 
+mx_seg2_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb7 
+23 
+1 
+mx_seg2_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg2_subseg0_emb8 
+24 
+1 
+mx_seg3_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb1 
+25 
+1 
+mx_seg3_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb2 
+26 
+1 
+mx_seg3_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb3 
+27 
+1 
+mx_seg3_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb4 
+28 
+1 
+mx_seg3_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb5 
+29 
+1 
+mx_seg3_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb6 
+30 
+1 
+mx_seg3_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb7 
+31 
+1 
+mx_seg3_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg3_subseg0_emb8 
+32 
+1 
+mx_seg4_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb1 
+33 
+1 
+mx_seg4_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb2 
+34 
+1 
+mx_seg4_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb3 
+35 
+1 
+mx_seg4_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb4 
+36 
+1 
+mx_seg4_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb5 
+37 
+1 
+mx_seg4_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb6 
+38 
+1 
+mx_seg4_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb7 
+39 
+1 
+mx_seg4_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg4_subseg0_emb8 
+40 
+1 
+mx_seg5_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb1 
+41 
+1 
+mx_seg5_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb2 
+42 
+1 
+mx_seg5_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb3 
+43 
+1 
+mx_seg5_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb4 
+44 
+1 
+mx_seg5_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb5 
+45 
+1 
+mx_seg5_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb6 
+46 
+1 
+mx_seg5_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb7 
+47 
+1 
+mx_seg5_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg5_subseg0_emb8 
+48 
+1 
+mx_seg6_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb1 
+49 
+1 
+mx_seg6_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb2 
+50 
+1 
+mx_seg6_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb3 
+51 
+1 
+mx_seg6_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb4 
+52 
+1 
+mx_seg6_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb5 
+53 
+1 
+mx_seg6_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb6 
+54 
+1 
+mx_seg6_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb7 
+55 
+1 
+mx_seg6_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg6_subseg0_emb8 
+56 
+1 
+mx_seg7_subseg0_emb1 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb1 
+57 
+1 
+mx_seg7_subseg0_emb2 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb2 
+58 
+1 
+mx_seg7_subseg0_emb3 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb3 
+59 
+1 
+mx_seg7_subseg0_emb4 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb4 
+60 
+1 
+mx_seg7_subseg0_emb5 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb5 
+61 
+1 
+mx_seg7_subseg0_emb6 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb6 
+62 
+1 
+mx_seg7_subseg0_emb7 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb7 
+63 
+1 
+mx_seg7_subseg0_emb8 
+1 dpmf_always 
+mc_asinh_norm_seg7_subseg0_emb8 
+

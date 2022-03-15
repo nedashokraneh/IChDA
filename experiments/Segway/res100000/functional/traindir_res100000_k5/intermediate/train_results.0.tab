@@ -1,0 +1,9 @@
+name	value
+input_master_filename	traindir_res100000_k5/params/input.master
+log_likelihood	60606.731337144585
+log_likelihood_filename	traindir_res100000_k5/likelihood/likelihood.ll
+num_segs	5
+params_filename	traindir_res100000_k5/params/params.0.params.61
+validation_likelihood	-inf
+validation_output_filename	
+validation_sum_filename	

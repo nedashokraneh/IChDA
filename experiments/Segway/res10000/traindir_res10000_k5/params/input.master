@@ -1,0 +1,451 @@
+#include "traindir_res10000_k5/auxiliary/segway.inc"
+
+#if CARD_SEG != 5
+#error Specified number of segment labels (CARD_SEG) does not match the number used for this input master file (5)
+#endif
+
+DT_IN_FILE inline
+4
+
+0 map_frameIndex_ruler
+1
+% is the frameIndex divisible by RULER_SCALE
+    -1 { mod(p0, RULER_SCALE) == 0 }
+
+1 map_seg_segCountDown
+1
+% this is only used at the beginning of an observation track
+0 5 0 1 2 3 default
+    -1 1
+    -1 1
+    -1 1
+    -1 1
+    -1 1
+
+2 map_segTransition_ruler_seg_segCountDown_segCountDown
+4
+    0 2 2 default
+      % segTransition(0) == 2 (seg transition):
+      % reinitialize the segCountDown value based on the usual tree
+      % used at the beginning of a segment
+      2 5 0 1 2 3 default
+    -1 1
+    -1 1
+    -1 1
+    -1 1
+    -1 1
+
+      % segTransition(0) in (0, 1) (no transition, subseg transition):
+      1 2 0 default
+            % ruler(0) == 0:
+            -1 { p3 } % not at ruler mark -> copy previous value
+
+            % ruler(0) == 1:
+            -1 { max(p3-1, 0) } % subtract 1 from previous value, or 0
+
+
+3 % XXXopt: good candidate for a linear combination C deterministic mapper
+
+map_seg_subseg_obs
+2       % num parents
+        -1 { p0*CARD_SUBSEG + p1 } 
+
+
+NAME_COLLECTION_IN_FILE inline
+12
+
+0 collection_seg_DNase 5
+mx_seg0_subseg0_DNase
+mx_seg1_subseg0_DNase
+mx_seg2_subseg0_DNase
+mx_seg3_subseg0_DNase
+mx_seg4_subseg0_DNase
+1 collection_seg_H3K4me2 5
+mx_seg0_subseg0_H3K4me2
+mx_seg1_subseg0_H3K4me2
+mx_seg2_subseg0_H3K4me2
+mx_seg3_subseg0_H3K4me2
+mx_seg4_subseg0_H3K4me2
+2 collection_seg_H3K27ac 5
+mx_seg0_subseg0_H3K27ac
+mx_seg1_subseg0_H3K27ac
+mx_seg2_subseg0_H3K27ac
+mx_seg3_subseg0_H3K27ac
+mx_seg4_subseg0_H3K27ac
+3 collection_seg_H2A_2EZ 5
+mx_seg0_subseg0_H2A_2EZ
+mx_seg1_subseg0_H2A_2EZ
+mx_seg2_subseg0_H2A_2EZ
+mx_seg3_subseg0_H2A_2EZ
+mx_seg4_subseg0_H2A_2EZ
+4 collection_seg_H3K9me3 5
+mx_seg0_subseg0_H3K9me3
+mx_seg1_subseg0_H3K9me3
+mx_seg2_subseg0_H3K9me3
+mx_seg3_subseg0_H3K9me3
+mx_seg4_subseg0_H3K9me3
+5 collection_seg_H3K4me1 5
+mx_seg0_subseg0_H3K4me1
+mx_seg1_subseg0_H3K4me1
+mx_seg2_subseg0_H3K4me1
+mx_seg3_subseg0_H3K4me1
+mx_seg4_subseg0_H3K4me1
+6 collection_seg_H3K27me3 5
+mx_seg0_subseg0_H3K27me3
+mx_seg1_subseg0_H3K27me3
+mx_seg2_subseg0_H3K27me3
+mx_seg3_subseg0_H3K27me3
+mx_seg4_subseg0_H3K27me3
+7 collection_seg_H3K9ac 5
+mx_seg0_subseg0_H3K9ac
+mx_seg1_subseg0_H3K9ac
+mx_seg2_subseg0_H3K9ac
+mx_seg3_subseg0_H3K9ac
+mx_seg4_subseg0_H3K9ac
+8 collection_seg_H3K4me3 5
+mx_seg0_subseg0_H3K4me3
+mx_seg1_subseg0_H3K4me3
+mx_seg2_subseg0_H3K4me3
+mx_seg3_subseg0_H3K4me3
+mx_seg4_subseg0_H3K4me3
+9 collection_seg_H3K36me3 5
+mx_seg0_subseg0_H3K36me3
+mx_seg1_subseg0_H3K36me3
+mx_seg2_subseg0_H3K36me3
+mx_seg3_subseg0_H3K36me3
+mx_seg4_subseg0_H3K36me3
+10 collection_seg_H3K79me2 5
+mx_seg0_subseg0_H3K79me2
+mx_seg1_subseg0_H3K79me2
+mx_seg2_subseg0_H3K79me2
+mx_seg3_subseg0_H3K79me2
+mx_seg4_subseg0_H3K79me2
+11 collection_seg_H4K20me1 5
+mx_seg0_subseg0_H4K20me1
+mx_seg1_subseg0_H4K20me1
+mx_seg2_subseg0_H4K20me1
+mx_seg3_subseg0_H4K20me1
+mx_seg4_subseg0_H4K20me1
+
+
+
+DETERMINISTIC_CPT_IN_FILE inline
+#if CARD_SUPERVISIONLABEL == -1
+5
+#else /* CARD_SUPERVISIONLABEL != -1 */
+6
+#endif /* CARD_SUPERVISIONLABEL == -1 */
+
+0 seg_segCountDown
+1
+CARD_SEG CARD_SEGCOUNTDOWN
+map_seg_segCountDown
+
+1 frameIndex_ruler
+1
+CARD_FRAMEINDEX CARD_RULER
+map_frameIndex_ruler
+
+2 segTransition_ruler_seg_segCountDown_segCountDown
+4
+CARD_SEGTRANSITION CARD_RULER CARD_SEG CARD_SEGCOUNTDOWN CARD_SEGCOUNTDOWN
+map_segTransition_ruler_seg_segCountDown_segCountDown
+
+3 seg_seg_copy
+1
+CARD_SEG CARD_SEG
+internal:copyParent
+
+4 subseg_subseg_copy
+1
+CARD_SUBSEG CARD_SUBSEG
+internal:copyParent
+
+#if CARD_SUPERVISIONLABEL != -1
+5 supervisionLabel_seg_alwaysTrue
+2
+CARD_SUPERVISIONLABEL CARD_SEG CARD_BOOLEAN
+map_supervisionLabel_seg_alwaysTrue
+#endif
+
+#if VIRTUAL_EVIDENCE == 1
+VE_CPT_IN_FILE inline
+1
+
+0 seg_virtualEvidence 1 5 2 VIRTUAL_EVIDENCE_LIST_FILENAME nfs:5 nis:0 fmt:ascii END
+
+#endif
+
+#ifndef INPUT_PARAMS_FILENAME
+
+DENSE_CPT_IN_FILE inline
+5
+
+0 start_seg 0 5
+0.2 0.2 0.2 0.2 0.2
+
+1 seg_subseg 1 5 1
+1.0
+1.0
+1.0
+1.0
+1.0
+
+2 seg_seg 1 5 5
+0.0 0.25 0.25 0.25 0.25
+0.25 0.0 0.25 0.25 0.25
+0.25 0.25 0.0 0.25 0.25
+0.25 0.25 0.25 0.0 0.25
+0.25 0.25 0.25 0.25 0.0
+
+3 seg_subseg_subseg 2 5 1 1
+1.0
+
+1.0
+
+1.0
+
+1.0
+
+1.0
+
+4 segCountDown_seg_segTransition 2 2 5 3
+0.99008910901 0.0099008910901 9.99990000095e-06
+0.99008910901 0.0099008910901 9.99990000095e-06
+0.99008910901 0.0099008910901 9.99990000095e-06
+0.99008910901 0.0099008910901 9.99990000095e-06
+0.99008910901 0.0099008910901 9.99990000095e-06
+
+0.990099009901 0.00990099009901 0.0
+0.990099009901 0.00990099009901 0.0
+0.990099009901 0.00990099009901 0.0
+0.990099009901 0.00990099009901 0.0
+0.990099009901 0.00990099009901 0.0
+
+
+MEAN_IN_FILE inline
+60
+
+0 mean_seg0_subseg0_DNase 1 0.733564561466
+1 mean_seg0_subseg0_H3K4me2 1 0.710808126951
+2 mean_seg0_subseg0_H3K27ac 1 0.558794687133
+3 mean_seg0_subseg0_H2A_2EZ 1 0.646863310874
+4 mean_seg0_subseg0_H3K9me3 1 0.603884420898
+5 mean_seg0_subseg0_H3K4me1 1 0.584314670101
+6 mean_seg0_subseg0_H3K27me3 1 0.641405751012
+7 mean_seg0_subseg0_H3K9ac 1 0.807085147377
+8 mean_seg0_subseg0_H3K4me3 1 0.749431964165
+9 mean_seg0_subseg0_H3K36me3 1 0.645519344848
+10 mean_seg0_subseg0_H3K79me2 1 0.773150480301
+11 mean_seg0_subseg0_H4K20me1 1 0.712232770242
+12 mean_seg1_subseg0_DNase 1 0.613125890064
+13 mean_seg1_subseg0_H3K4me2 1 0.707992251413
+14 mean_seg1_subseg0_H3K27ac 1 0.423943207391
+15 mean_seg1_subseg0_H2A_2EZ 1 0.579731439373
+16 mean_seg1_subseg0_H3K9me3 1 0.678821290124
+17 mean_seg1_subseg0_H3K4me1 1 0.602304282356
+18 mean_seg1_subseg0_H3K27me3 1 0.673024660178
+19 mean_seg1_subseg0_H3K9ac 1 0.44316013193
+20 mean_seg1_subseg0_H3K4me3 1 0.611106595082
+21 mean_seg1_subseg0_H3K36me3 1 0.525884578983
+22 mean_seg1_subseg0_H3K79me2 1 0.764222189593
+23 mean_seg1_subseg0_H4K20me1 1 0.620401986785
+24 mean_seg2_subseg0_DNase 1 0.536401870295
+25 mean_seg2_subseg0_H3K4me2 1 0.478587578338
+26 mean_seg2_subseg0_H3K27ac 1 0.667057063255
+27 mean_seg2_subseg0_H2A_2EZ 1 0.541346661433
+28 mean_seg2_subseg0_H3K9me3 1 0.572213439537
+29 mean_seg2_subseg0_H3K4me1 1 0.591488190279
+30 mean_seg2_subseg0_H3K27me3 1 0.709528137894
+31 mean_seg2_subseg0_H3K9ac 1 0.606317668604
+32 mean_seg2_subseg0_H3K4me3 1 0.51422795321
+33 mean_seg2_subseg0_H3K36me3 1 0.661101100932
+34 mean_seg2_subseg0_H3K79me2 1 0.551223115993
+35 mean_seg2_subseg0_H4K20me1 1 0.652748856069
+36 mean_seg3_subseg0_DNase 1 0.829017294905
+37 mean_seg3_subseg0_H3K4me2 1 0.487261579643
+38 mean_seg3_subseg0_H3K27ac 1 0.588112329227
+39 mean_seg3_subseg0_H2A_2EZ 1 0.514856417889
+40 mean_seg3_subseg0_H3K9me3 1 0.71250440244
+41 mean_seg3_subseg0_H3K4me1 1 0.606553707002
+42 mean_seg3_subseg0_H3K27me3 1 0.600475777765
+43 mean_seg3_subseg0_H3K9ac 1 0.745885664381
+44 mean_seg3_subseg0_H3K4me3 1 0.530403193941
+45 mean_seg3_subseg0_H3K36me3 1 0.663244510847
+46 mean_seg3_subseg0_H3K79me2 1 0.824312873945
+47 mean_seg3_subseg0_H4K20me1 1 0.660465868405
+48 mean_seg4_subseg0_DNase 1 0.757895815436
+49 mean_seg4_subseg0_H3K4me2 1 0.414397110727
+50 mean_seg4_subseg0_H3K27ac 1 0.622105130095
+51 mean_seg4_subseg0_H2A_2EZ 1 0.590899725046
+52 mean_seg4_subseg0_H3K9me3 1 0.618327423671
+53 mean_seg4_subseg0_H3K4me1 1 0.703129604634
+54 mean_seg4_subseg0_H3K27me3 1 0.613767445368
+55 mean_seg4_subseg0_H3K9ac 1 0.624810328868
+56 mean_seg4_subseg0_H3K4me3 1 0.561222478694
+57 mean_seg4_subseg0_H3K36me3 1 0.593534690512
+58 mean_seg4_subseg0_H3K79me2 1 0.664214424616
+59 mean_seg4_subseg0_H4K20me1 1 0.662096072434
+
+COVAR_IN_FILE inline
+12
+
+0 covar_DNase 1 0.641709948884
+1 covar_H3K4me2 1 0.973215920287
+2 covar_H3K27ac 1 1.40597694877
+3 covar_H2A_2EZ 1 0.268383671295
+4 covar_H3K9me3 1 0.179730775034
+5 covar_H3K4me1 1 0.466823065929
+6 covar_H3K27me3 1 0.142915234746
+7 covar_H3K9ac 1 0.873259555647
+8 covar_H3K4me3 1 0.476630301426
+9 covar_H3K36me3 1 0.509900575691
+10 covar_H3K79me2 1 1.63515317037
+11 covar_H4K20me1 1 0.103693324402
+
+DPMF_IN_FILE inline
+1
+
+0 dpmf_always 1 1.0
+
+MC_IN_FILE inline
+60
+
+0 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_DNase mean_seg0_subseg0_DNase covar_DNase
+1 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K4me2 mean_seg0_subseg0_H3K4me2 covar_H3K4me2
+2 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K27ac mean_seg0_subseg0_H3K27ac covar_H3K27ac
+3 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H2A_2EZ mean_seg0_subseg0_H2A_2EZ covar_H2A_2EZ
+4 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K9me3 mean_seg0_subseg0_H3K9me3 covar_H3K9me3
+5 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K4me1 mean_seg0_subseg0_H3K4me1 covar_H3K4me1
+6 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K27me3 mean_seg0_subseg0_H3K27me3 covar_H3K27me3
+7 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K9ac mean_seg0_subseg0_H3K9ac covar_H3K9ac
+8 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K4me3 mean_seg0_subseg0_H3K4me3 covar_H3K4me3
+9 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K36me3 mean_seg0_subseg0_H3K36me3 covar_H3K36me3
+10 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H3K79me2 mean_seg0_subseg0_H3K79me2 covar_H3K79me2
+11 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg0_subseg0_H4K20me1 mean_seg0_subseg0_H4K20me1 covar_H4K20me1
+12 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_DNase mean_seg1_subseg0_DNase covar_DNase
+13 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K4me2 mean_seg1_subseg0_H3K4me2 covar_H3K4me2
+14 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K27ac mean_seg1_subseg0_H3K27ac covar_H3K27ac
+15 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H2A_2EZ mean_seg1_subseg0_H2A_2EZ covar_H2A_2EZ
+16 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K9me3 mean_seg1_subseg0_H3K9me3 covar_H3K9me3
+17 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K4me1 mean_seg1_subseg0_H3K4me1 covar_H3K4me1
+18 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K27me3 mean_seg1_subseg0_H3K27me3 covar_H3K27me3
+19 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K9ac mean_seg1_subseg0_H3K9ac covar_H3K9ac
+20 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K4me3 mean_seg1_subseg0_H3K4me3 covar_H3K4me3
+21 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K36me3 mean_seg1_subseg0_H3K36me3 covar_H3K36me3
+22 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H3K79me2 mean_seg1_subseg0_H3K79me2 covar_H3K79me2
+23 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg1_subseg0_H4K20me1 mean_seg1_subseg0_H4K20me1 covar_H4K20me1
+24 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_DNase mean_seg2_subseg0_DNase covar_DNase
+25 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K4me2 mean_seg2_subseg0_H3K4me2 covar_H3K4me2
+26 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K27ac mean_seg2_subseg0_H3K27ac covar_H3K27ac
+27 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H2A_2EZ mean_seg2_subseg0_H2A_2EZ covar_H2A_2EZ
+28 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K9me3 mean_seg2_subseg0_H3K9me3 covar_H3K9me3
+29 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K4me1 mean_seg2_subseg0_H3K4me1 covar_H3K4me1
+30 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K27me3 mean_seg2_subseg0_H3K27me3 covar_H3K27me3
+31 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K9ac mean_seg2_subseg0_H3K9ac covar_H3K9ac
+32 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K4me3 mean_seg2_subseg0_H3K4me3 covar_H3K4me3
+33 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K36me3 mean_seg2_subseg0_H3K36me3 covar_H3K36me3
+34 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H3K79me2 mean_seg2_subseg0_H3K79me2 covar_H3K79me2
+35 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg2_subseg0_H4K20me1 mean_seg2_subseg0_H4K20me1 covar_H4K20me1
+36 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_DNase mean_seg3_subseg0_DNase covar_DNase
+37 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K4me2 mean_seg3_subseg0_H3K4me2 covar_H3K4me2
+38 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K27ac mean_seg3_subseg0_H3K27ac covar_H3K27ac
+39 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H2A_2EZ mean_seg3_subseg0_H2A_2EZ covar_H2A_2EZ
+40 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K9me3 mean_seg3_subseg0_H3K9me3 covar_H3K9me3
+41 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K4me1 mean_seg3_subseg0_H3K4me1 covar_H3K4me1
+42 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K27me3 mean_seg3_subseg0_H3K27me3 covar_H3K27me3
+43 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K9ac mean_seg3_subseg0_H3K9ac covar_H3K9ac
+44 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K4me3 mean_seg3_subseg0_H3K4me3 covar_H3K4me3
+45 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K36me3 mean_seg3_subseg0_H3K36me3 covar_H3K36me3
+46 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H3K79me2 mean_seg3_subseg0_H3K79me2 covar_H3K79me2
+47 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg3_subseg0_H4K20me1 mean_seg3_subseg0_H4K20me1 covar_H4K20me1
+48 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_DNase mean_seg4_subseg0_DNase covar_DNase
+49 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K4me2 mean_seg4_subseg0_H3K4me2 covar_H3K4me2
+50 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K27ac mean_seg4_subseg0_H3K27ac covar_H3K27ac
+51 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H2A_2EZ mean_seg4_subseg0_H2A_2EZ covar_H2A_2EZ
+52 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K9me3 mean_seg4_subseg0_H3K9me3 covar_H3K9me3
+53 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K4me1 mean_seg4_subseg0_H3K4me1 covar_H3K4me1
+54 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K27me3 mean_seg4_subseg0_H3K27me3 covar_H3K27me3
+55 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K9ac mean_seg4_subseg0_H3K9ac covar_H3K9ac
+56 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K4me3 mean_seg4_subseg0_H3K4me3 covar_H3K4me3
+57 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K36me3 mean_seg4_subseg0_H3K36me3 covar_H3K36me3
+58 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H3K79me2 mean_seg4_subseg0_H3K79me2 covar_H3K79me2
+59 1 COMPONENT_TYPE_DIAG_GAUSSIAN mc_asinh_norm_seg4_subseg0_H4K20me1 mean_seg4_subseg0_H4K20me1 covar_H4K20me1
+
+MX_IN_FILE inline
+60
+
+0 1 mx_seg0_subseg0_DNase 1 dpmf_always mc_asinh_norm_seg0_subseg0_DNase
+1 1 mx_seg0_subseg0_H3K4me2 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K4me2
+2 1 mx_seg0_subseg0_H3K27ac 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K27ac
+3 1 mx_seg0_subseg0_H2A_2EZ 1 dpmf_always mc_asinh_norm_seg0_subseg0_H2A_2EZ
+4 1 mx_seg0_subseg0_H3K9me3 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K9me3
+5 1 mx_seg0_subseg0_H3K4me1 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K4me1
+6 1 mx_seg0_subseg0_H3K27me3 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K27me3
+7 1 mx_seg0_subseg0_H3K9ac 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K9ac
+8 1 mx_seg0_subseg0_H3K4me3 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K4me3
+9 1 mx_seg0_subseg0_H3K36me3 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K36me3
+10 1 mx_seg0_subseg0_H3K79me2 1 dpmf_always mc_asinh_norm_seg0_subseg0_H3K79me2
+11 1 mx_seg0_subseg0_H4K20me1 1 dpmf_always mc_asinh_norm_seg0_subseg0_H4K20me1
+12 1 mx_seg1_subseg0_DNase 1 dpmf_always mc_asinh_norm_seg1_subseg0_DNase
+13 1 mx_seg1_subseg0_H3K4me2 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K4me2
+14 1 mx_seg1_subseg0_H3K27ac 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K27ac
+15 1 mx_seg1_subseg0_H2A_2EZ 1 dpmf_always mc_asinh_norm_seg1_subseg0_H2A_2EZ
+16 1 mx_seg1_subseg0_H3K9me3 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K9me3
+17 1 mx_seg1_subseg0_H3K4me1 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K4me1
+18 1 mx_seg1_subseg0_H3K27me3 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K27me3
+19 1 mx_seg1_subseg0_H3K9ac 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K9ac
+20 1 mx_seg1_subseg0_H3K4me3 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K4me3
+21 1 mx_seg1_subseg0_H3K36me3 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K36me3
+22 1 mx_seg1_subseg0_H3K79me2 1 dpmf_always mc_asinh_norm_seg1_subseg0_H3K79me2
+23 1 mx_seg1_subseg0_H4K20me1 1 dpmf_always mc_asinh_norm_seg1_subseg0_H4K20me1
+24 1 mx_seg2_subseg0_DNase 1 dpmf_always mc_asinh_norm_seg2_subseg0_DNase
+25 1 mx_seg2_subseg0_H3K4me2 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K4me2
+26 1 mx_seg2_subseg0_H3K27ac 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K27ac
+27 1 mx_seg2_subseg0_H2A_2EZ 1 dpmf_always mc_asinh_norm_seg2_subseg0_H2A_2EZ
+28 1 mx_seg2_subseg0_H3K9me3 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K9me3
+29 1 mx_seg2_subseg0_H3K4me1 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K4me1
+30 1 mx_seg2_subseg0_H3K27me3 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K27me3
+31 1 mx_seg2_subseg0_H3K9ac 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K9ac
+32 1 mx_seg2_subseg0_H3K4me3 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K4me3
+33 1 mx_seg2_subseg0_H3K36me3 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K36me3
+34 1 mx_seg2_subseg0_H3K79me2 1 dpmf_always mc_asinh_norm_seg2_subseg0_H3K79me2
+35 1 mx_seg2_subseg0_H4K20me1 1 dpmf_always mc_asinh_norm_seg2_subseg0_H4K20me1
+36 1 mx_seg3_subseg0_DNase 1 dpmf_always mc_asinh_norm_seg3_subseg0_DNase
+37 1 mx_seg3_subseg0_H3K4me2 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K4me2
+38 1 mx_seg3_subseg0_H3K27ac 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K27ac
+39 1 mx_seg3_subseg0_H2A_2EZ 1 dpmf_always mc_asinh_norm_seg3_subseg0_H2A_2EZ
+40 1 mx_seg3_subseg0_H3K9me3 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K9me3
+41 1 mx_seg3_subseg0_H3K4me1 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K4me1
+42 1 mx_seg3_subseg0_H3K27me3 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K27me3
+43 1 mx_seg3_subseg0_H3K9ac 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K9ac
+44 1 mx_seg3_subseg0_H3K4me3 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K4me3
+45 1 mx_seg3_subseg0_H3K36me3 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K36me3
+46 1 mx_seg3_subseg0_H3K79me2 1 dpmf_always mc_asinh_norm_seg3_subseg0_H3K79me2
+47 1 mx_seg3_subseg0_H4K20me1 1 dpmf_always mc_asinh_norm_seg3_subseg0_H4K20me1
+48 1 mx_seg4_subseg0_DNase 1 dpmf_always mc_asinh_norm_seg4_subseg0_DNase
+49 1 mx_seg4_subseg0_H3K4me2 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K4me2
+50 1 mx_seg4_subseg0_H3K27ac 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K27ac
+51 1 mx_seg4_subseg0_H2A_2EZ 1 dpmf_always mc_asinh_norm_seg4_subseg0_H2A_2EZ
+52 1 mx_seg4_subseg0_H3K9me3 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K9me3
+53 1 mx_seg4_subseg0_H3K4me1 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K4me1
+54 1 mx_seg4_subseg0_H3K27me3 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K27me3
+55 1 mx_seg4_subseg0_H3K9ac 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K9ac
+56 1 mx_seg4_subseg0_H3K4me3 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K4me3
+57 1 mx_seg4_subseg0_H3K36me3 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K36me3
+58 1 mx_seg4_subseg0_H3K79me2 1 dpmf_always mc_asinh_norm_seg4_subseg0_H3K79me2
+59 1 mx_seg4_subseg0_H4K20me1 1 dpmf_always mc_asinh_norm_seg4_subseg0_H4K20me1
+
+
+#else
+
+DENSE_CPT_IN_FILE INPUT_PARAMS_FILENAME ascii
+MEAN_IN_FILE INPUT_PARAMS_FILENAME ascii
+COVAR_IN_FILE INPUT_PARAMS_FILENAME ascii
+DPMF_IN_FILE INPUT_PARAMS_FILENAME ascii
+MC_IN_FILE INPUT_PARAMS_FILENAME ascii
+MX_IN_FILE INPUT_PARAMS_FILENAME ascii
+
+#endif
+
+
