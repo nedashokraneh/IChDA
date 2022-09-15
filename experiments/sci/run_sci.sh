@@ -1,0 +1,1 @@
+../../alternatives/sci-master/LINE/line -train ../../data/GM12878/hg19/res100000_datasets/interactions/sci_graph.txt -order 1 -sample 25 -size 100 -negative 5 -output ../../data/GM12878/hg19/res100000_datasets/embeddings/sci_first.txt 
