@@ -1,3 +1,6 @@
+# By Yuchuan Wang
+# yuchuanw@andrew.cmu.edu
+
 import sys
 import os
 
@@ -11,7 +14,7 @@ import mrf_util
 import time
 
 class MarkovRandomField:
-    def __init__(self, n, edges, obs, out_dir, n_state=10, n_iter=10, tol=1e-2):
+    def __init__(self, n, edges, obs, out_dir, n_state=10, n_iter=10, tol=1e-2, lbp_iter=100):
         """ Function to initialize the graphs state.
 
         Args:
@@ -47,6 +50,7 @@ class MarkovRandomField:
         self.label = np.zeros(n_state)
         self.label_prob = np.zeros(n)
         self.n_iter = n_iter
+        self.lbp_iter = lbp_iter
         self.tol = tol
         self.last = []
         self.out_dir = out_dir
@@ -80,6 +84,7 @@ class MarkovRandomField:
             self.label_prob[:,i] = mrf_util.get_multi_normal_pdf(gmm_model.means_[i,:],gmm_model.covariances_[i,:,:], self.obs)
 
         self.gaussian = self.label_prob.copy()
+        #print('gaussian at first: {}'.format(self.gaussian))
 
     def init_trans(self):
         """ Initialization of transition prob. """
@@ -99,7 +104,7 @@ class MarkovRandomField:
 
     def predict(self):
         """ Predict label based on belief. """
-        self.label = np.array(np.argmax(np.transpose(self.label_prob), axis=0))[0]
+        self.label = np.array(np.argmax(np.transpose(self.label_prob), axis=0))
 
     def check_converge(self):
         """ Check whether model is converged. """
@@ -146,6 +151,7 @@ class MarkovRandomField:
             #message = np.ones(belief_new.shape).dot(logsumexp(np.transpose(self.label_prob)) + belief.dot(np.transpose(f)) - message.dot(reverse_matrix))
 
             """ Check convergence """
+            #print('belief at iteration {} is {}'.format(i, np.sum(belief)))
             self.last.append(np.sum(belief))
             if len(self.last)>2:
                 tmp = self.last.pop(0)
@@ -164,15 +170,17 @@ class MarkovRandomField:
     def solve(self, max_iter=10):
         """ Main function for inference of states. """
         last = []
+        self.trans_mats = []
         for iter_i in range(max_iter):
-            self.loop_belief_propagation()
+            self.loop_belief_propagation(self.lbp_iter)
             mrf_util.print_log(time.ctime() + " EM iteration " + str(iter_i), self.out_dir + "/log.txt")
 
             """ EM algorithm """
 
             label_prev = csr_matrix((np.ones(self.n), (np.arange(self.n),self.label)), shape=(self.n, self.n_state))
+
             neighbor_likehood = self.edges_matrix.dot(label_prev).dot(self.edge_potential)
-            posterior = (self.gaussian +  neighbor_likehood)
+            posterior = (self.gaussian + neighbor_likehood)
             posterior = posterior - logsumexp(posterior, axis=0)
             #posterior = logsumexp(self.gaussian +  neighbor_likehood, axis=1)
             estimate_label = np.array(np.argmax(posterior, axis=1))
@@ -189,6 +197,7 @@ class MarkovRandomField:
             label_one_hot = csr_matrix((np.ones(self.n), (estimate_label, np.arange(self.n))), shape=(self.n_state, self.n))
             label_one_hot_t = np.transpose(label_one_hot)
             trans_matrix = label_one_hot.dot(self.edges_matrix).dot(label_one_hot_t)
+            self.trans_mats.append(trans_matrix.toarray())
             trans_matrix = mrf_util.log_transform(trans_matrix.toarray())
             trans_matrix = trans_matrix - logsumexp(trans_matrix)
             self.edge_potential = trans_matrix

@@ -22,10 +22,12 @@ class GMM_MP():
         self.mp_weight = args['w']
         self.mp_exe = args['mp']
 
+
         if os.path.exists(self.mp_dir_path):
             shutil.rmtree(self.mp_dir_path)
         os.mkdir(self.mp_dir_path)
         self.signals = pd.read_csv(self.signals_path, sep = "\t", header = None)
+        self.signals = np.arcsinh(self.signals)
         self.bins = pd.read_csv(self.bins_path, sep = "\t", header = None)
         self.num_bins = self.bins.shape[0]
         self.iters_labels = []
@@ -112,7 +114,6 @@ class GMM_MP():
         mp_label_filepath = os.path.join(mp_dirpath, "mp.label")
         mp_post_filepath = os.path.join(mp_dirpath, "mp.post")
         mp_obj_filepath = os.path.join(mp_dirpath, "mp.obj")
-
         cmd = [self.mp_exe,
                "-inputGraphName", str(mp_graph_filepath),
                "-transductionFile", str(mp_trans_filepath),
@@ -150,6 +151,7 @@ class GMM_MP():
             self.posterior_probs = np.exp(log_resp)
         self.labels = np.argmax(self.posterior_probs, axis = 1)
         self.iters_labels.append(self.labels)
+
 
 
     def GMM_train(self):

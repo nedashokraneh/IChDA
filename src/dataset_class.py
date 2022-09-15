@@ -44,12 +44,17 @@ class dataset:
             os.mkdir(self.hic_dir_path)
         self.signals_names = signals_names
         self.signals_dir_path = signals_dir_path
+
         self.output_dir_path = output_dir_path
         if not os.path.exists(self.output_dir_path):
             os.mkdir(self.output_dir_path)
         self.output_annots_dir_path = os.path.join(self.output_dir_path, 'annotations')
         if not os.path.exists(self.output_annots_dir_path):
             os.mkdir(self.output_annots_dir_path)
+        self.output_interactions_dir_path = os.path.join(self.output_dir_path, 'interactions')
+        if not os.path.exists(self.output_interactions_dir_path):
+            os.mkdir(self.output_interactions_dir_path)
+
         self.data_path = data_path
         self.config = data_utils.read_config(config_path)
         self.valid_chroms = ['chr{}'.format(c) for c in self.config['valid_chroms']]
@@ -149,6 +154,13 @@ class dataset:
         hic_df['ind2'] = hic_df['ind2'].astype(int)
         return hic_df
 
+    def get_oe_significant_df(self, row_chrom, col_chrom, num_edges):
+
+        hic_df = self.get_hic_df(row_chrom, col_chrom, 'oe')
+        hic_df = hic_df[hic_df['pos1']!=hic_df['pos2']]
+        hic_df = hic_df.nlargest(num_edges, 'weight')
+        return hic_df
+
 
 
     def get_hic_mat(self, row_chrom, col_chrom, type):
@@ -168,7 +180,7 @@ class dataset:
 
     def create_gw_hic_data(self):
 
-        out_file_path = os.path.join(self.output_dir_path, 'GW_HiC.txt')
+        out_file_path = os.path.join(self.output_interactions_dir_path, 'GW_HiC.txt')
         #out_file = open(out_file_path, 'w')
         for c1 in np.arange(1,23):
             for c2 in np.arange(c1,23):
@@ -180,6 +192,27 @@ class dataset:
                 #    out_file.write(line)
         out_file.close()
 
+    def generate_sci_graph(self):
+        output_file_path = os.path.join(self.output_interactions_dir_path, 'sci_graph.txt')
+        sci_file = open(output_file_path, 'w')
+        for c1 in np.arange(1,23):
+            for c2 in np.arange(c1+1,23):
+                print ('Adding interactions between chromosomes {} and {}...'.format(c1, c2))
+                file_name = 'observed_chr{}_chr{}.txt'.format(c1,c2)
+                file_path = os.path.join(self.hic_dir_path, file_name)
+                if not os.path.exists(file_path):
+                    print ('{} does not exist'.format(file_name))
+                    self.dump_hic_file(c1, c2, 'observed')
+                with open(file_path, 'r') as f:
+                    for line in f:
+                        pos1, pos2, count = line.split('\t')
+                        pos1 = int(int(pos1)/self.resolution)
+                        pos2 = int(int(pos2)/self.resolution)
+                        ind1 = self.pos2ind_dict['chr{}'.format(c1)][pos1]
+                        ind2 = self.pos2ind_dict['chr{}'.format(c2)][pos2]
+                        if float(count) >= 1:
+                            sci_file.write('{}\t{}\t{}\n'.format(ind1, ind2, count))
+        sci_file.close()
 
     def generate_fithic_file(self, row_chrom, col_chrom):
 
@@ -230,62 +263,57 @@ class dataset:
         fithic_mat = csr_matrix((fithic_df['edge'], (fithic_df['pos1'], fithic_df['pos2'])), shape=(row_chrom_size,col_chrom_size))
         return fithic_mat
 
-    def generate_significant_interactions_file(self, type, th):
+    def get_fithic_significant_df(self, row_chrom, col_chrom, num_edges):
 
-        interactions_file_path = os.path.join(self.output_dir_path, '{}_range_interactions.txt'.format(type))
-        out_file = open(interactions_file_path, "w")
-        if type == 'short':
-            for c in self.config['valid_chroms']:
-                fithic_filepath = self.get_fithic_output_path(c,c)
-                if not os.path.exists(fithic_filepath):
-                    self.generate_fithic_file(c,c)
-                with gzip.open(fithic_filepath) as f:
-                    next(f)
-                    for line in f:
-                        chr1, fragmentMid1, chr2, fragmentMid2, _, pvalue, *_ = line.decode('UTF-8').split("\t")
-                        if (np.isnan(float(pvalue)) or np.isnan(float(fragmentMid1)) or np.isnan(float(fragmentMid2))):
+        fithic_df = self.get_fithic(row_chrom,col_chrom)
+        if row_chrom == col_chrom:
+            fithic_df = fithic_df[fithic_df['pos1']!=fithic_df['pos2']]
+        if fithic_df.shape[0] > num_edges:
+            fithic_df = fithic_df.nsmallest(num_edges, 'pvalue')
+        return fithic_df
+
+
+    def generate_intra_significant_interactions_file_dist_th(self, th_list, dist_th):
+
+        th_list = sorted(th_list, reverse = True)
+        out_files = []
+        out_dir_path = os.path.join(self.output_interactions_dir_path, 'short_ranges')
+        for i,th in enumerate(th_list):
+            interactions_file_path = os.path.join(out_dir_path, 'short_range_interactions(th={},dist={}).txt'.format(th,dist_th))
+            out_files.append(open(interactions_file_path, "w"))
+        for c in self.config['valid_chroms']:
+            fithic_filepath = self.get_fithic_output_path(c,c)
+            if not os.path.exists(fithic_filepath):
+                self.generate_fithic_file(c,c)
+            with gzip.open(fithic_filepath) as f:
+                next(f)
+                for line in f:
+                    chr1, fragmentMid1, chr2, fragmentMid2, _, pvalue, *_ = line.decode('UTF-8').split("\t")
+                    if (np.isnan(float(pvalue)) or np.isnan(float(fragmentMid1)) or np.isnan(float(fragmentMid2))):
+                        continue
+                    if (float(pvalue) <= th_list[0]) & (abs(int(fragmentMid2)-int(fragmentMid1)) <= dist_th):
+                        pos1 = math.floor(int(fragmentMid1)/self.resolution)
+                        pos2 = math.floor(int(fragmentMid2)/self.resolution)
+                        ind1 = self.pos2ind_dict[chr1][pos1]
+                        ind2 = self.pos2ind_dict[chr2][pos2]
+                        if (np.isnan(ind1) or np.isnan(ind2)):
                             continue
-                        if (float(pvalue) <= th) & (abs(int(fragmentMid2)-int(fragmentMid1)) <= 1000000):
-                            pos1 = math.floor(int(fragmentMid1)/self.resolution)
-                            pos2 = math.floor(int(fragmentMid2)/self.resolution)
-                            ind1 = self.pos2ind_dict[chr1][pos1]
-                            ind2 = self.pos2ind_dict[chr2][pos2]
-                            if (np.isnan(ind1) or np.isnan(ind2)):
-                                continue
-                            if ind1 != ind2:
-                                out_file.write("{}\t{}\t{}\n".format(int(ind1),int(ind2),1))
-        elif type == 'long':
-            for cc,c1 in enumerate(self.config['valid_chroms']):
-                for c2 in self.config['valid_chroms'][cc:]:
-                    fithic_filepath = self.get_fithic_output_path(c1,c2)
-                    if not os.path.exists(fithic_filepath):
-                        self.generate_fithic_file(c1,c2)
-                    with gzip.open(fithic_filepath) as f:
-                        next(f)
-                        for line in f:
-                            chr1, fragmentMid1, chr2, fragmentMid2, _, pvalue, *_ = line.decode('UTF-8').split("\t")
-                            if (np.isnan(float(pvalue)) or np.isnan(float(fragmentMid1)) or np.isnan(float(fragmentMid2))):
-                                continue
-                            if (float(pvalue) <= th):
-                                pos1 = math.floor(int(fragmentMid1)/self.resolution)
-                                pos2 = math.floor(int(fragmentMid2)/self.resolution)
-                                ind1 = self.pos2ind_dict[chr1][pos1]
-                                ind2 = self.pos2ind_dict[chr2][pos2]
-                                if (np.isnan(ind1) or np.isnan(ind2)):
-                                    continue
-                                if ind1 != ind2:
-                                    out_file.write("{}\t{}\t{}\n".format(int(ind1),int(ind2),1))
-
-        else:
-            print('invalid type. choose between short and long...')
-            return
-
-        out_file.close()
+                        if ind1 != ind2:
+                            out_files[0].write("{}\t{}\t{}\n".format(int(ind1),int(ind2),1))
+                            for i,th in enumerate(th_list[1:]):
+                                if float(pvalue) <= th:
+                                    out_files[i+1].write("{}\t{}\t{}\n".format(int(ind1),int(ind2),1))
+                                else:
+                                    break
+        for out_file in out_files:
+            out_file.close()
 
 
-    def generate_oe_significant_interactions_file(self, base_count):
 
-        out_file_path = os.path.join(self.output_dir_path, 'oe_significant_interactions.txt')
+    def generate_significant_interactions_file(self, type, base_count):
+
+        out_file_path = os.path.join(self.output_interactions_dir_path, '{}_significant_interactions_b{}.txt'.format(type,base_count))
+        sym_out_file_path = os.path.join(self.output_interactions_dir_path, 'sym_{}_significant_interactions_b{}.txt'.format(type,base_count))
         chroms_valid_lengths = [len(self.get_valid_bins(c)) for c in np.arange(1,23)]
         min_length = np.min(chroms_valid_lengths)
         for c1 in np.arange(1,23):
@@ -295,14 +323,89 @@ class dataset:
                 ratio = (c1_valid_length/min_length) * (c2_valid_length/min_length)
                 significant_contacts = int(base_count*ratio)
                 print('adding {} contacts for chr{} and chr{}'.format(significant_contacts,c1,c2))
-                hic_df = self.get_indexed_hic_df(c1,c2,'oe')
-                hic_df = hic_df.nlargest(significant_contacts, 'weight')
-                hic_df['weight'] = 1
-                hic_df = hic_df[hic_df['ind1'] != hic_df['ind2']]
-                hic_df.to_csv(out_file_path, sep = "\t", header = None, index = False, mode = 'a')
+                if type == 'fithic':
+                    df = self.get_fithic_significant_df(c1, c2, significant_contacts)
+                else:
+                    df = self.get_oe_significant_df(c1, c2, significant_contacts)
+                df['ind1'] = [self.pos2ind_dict['chr{}'.format(c1)][p] for p in df['pos1']]
+                df['ind2'] = [self.pos2ind_dict['chr{}'.format(c2)][p] for p in df['pos2']]
+                df.dropna(inplace=True)
+                df[['ind1','ind2']] = df[['ind1','ind2']].astype(int)
+                df['weight'] = 1
+                df.loc[:,['ind1','ind2','weight']].to_csv(out_file_path, sep = "\t", header = None, index = False, mode = 'a')
+                df.loc[:,['ind1','ind2','weight']].to_csv(sym_out_file_path, sep = "\t", header = None, index = False, mode = 'a')
+                df.loc[:,['ind2','ind1','weight']].to_csv(sym_out_file_path, sep = "\t", header = None, index = False, mode = 'a')
 
+    def generate_fithic_intra(self, pvalue):
 
+        out_file_path = os.path.join(self.output_interactions_dir_path, 'fithic_significant_intra_interactions.txt')
+        for c in np.arange(1,23):
+            df = self.get_fithic(c,c)
+            df = df[df['pvalue']<pvalue]
+            df['id1'] = [self.pos2ind_dict['chr{}'.format(c)][p] for p in df['pos1']]
+            df['id2'] = [self.pos2ind_dict['chr{}'.format(c)][p] for p in df['pos2']]
+            df['weight'] = 1
+            print('adding {} edges for chromosome {}...'.format(df.shape[0],c))
+            df.loc[:,['id1','id2','weight']].to_csv(out_file_path, sep = "\t", header = None, index = False, mode = 'a')
 
+    def generate_intra_significant_interactions_file(self, type, base_count):
+
+        out_file_path = os.path.join(self.output_interactions_dir_path, '{}_significant_intra_interactions_b{}.txt'.format(type,base_count))
+        #sym_out_file_path = os.path.join(self.output_interactions_dir_path, 'sym_{}_significant_intra_interactions_b{}.txt'.format(type,base_count))
+        chroms_valid_lengths = [len(self.get_valid_bins(c)) for c in np.arange(1,23)]
+        min_length = np.min(chroms_valid_lengths)
+        for c in np.arange(1,23):
+            valid_length = chroms_valid_lengths[c-1]
+            ratio = (valid_length/min_length) * (valid_length/min_length)
+            significant_contacts = int(base_count*ratio)
+            print('adding {} contacts for chr{} and chr{}'.format(significant_contacts,c,c))
+            if type == 'fithic':
+                df = self.get_fithic_significant_df(c, c, significant_contacts)
+            else:
+                df = self.get_oe_significant_df(c, c, significant_contacts)
+            df['ind1'] = [self.pos2ind_dict['chr{}'.format(c)][p] for p in df['pos1']]
+            df['ind2'] = [self.pos2ind_dict['chr{}'.format(c)][p] for p in df['pos2']]
+            df.dropna(inplace=True)
+            df[['ind1','ind2']] = df[['ind1','ind2']].astype(int)
+            df['weight'] = 1
+            df.loc[:,['ind1','ind2','weight']].to_csv(out_file_path, sep = "\t", header = None, index = False, mode = 'a')
+            #df.loc[:,['ind1','ind2','weight']].to_csv(sym_out_file_path, sep = "\t", header = None, index = False, mode = 'a')
+            #df.loc[:,['ind2','ind1','weight']].to_csv(sym_out_file_path, sep = "\t", header = None, index = False, mode = 'a')
+
+    def get_chain_df(self, chrom):
+
+        v = np.array(self.get_valid_bins(chrom))
+        is_chain = (v[1:] == v[:-1]+1)
+        chain_df = pd.DataFrame({'pos1': v[:-1][is_chain], 'pos2': v[:-1][is_chain]+1})
+        return chain_df
+
+    def generate_chain_interactions_file(self):
+
+        chain_file_path = os.path.join(self.output_interactions_dir_path, 'chain_interactions.txt')
+        chunks = self.get_chunks_lengths()
+        starts = np.cumsum([0] + chunks[:-1])
+        ends = np.cumsum(chunks)
+        chain_edges = []
+        for start,end in zip(starts, ends):
+            edges = []
+            for e in np.arange(start,end-1):
+                edges.append([e,e+1,1])
+            chain_edges.extend(edges)
+        chain_edges = pd.DataFrame(chain_edges)
+        chain_edges.to_csv(chain_file_path, sep = "\t", header = None, index = False)
+
+    def ind2pos_interaction_file(self, infile_path, outfile_path):
+
+        outfile = open(outfile_path, 'w')
+        with open(infile_path, 'r') as infile:
+            for line in infile:
+                ind1, ind2, value = line.split('\t')
+                chr1, pos1 = self.ind2pos_dict[int(ind1)]
+                pos1 = self.resolution * pos1
+                chr2, pos2 = self.ind2pos_dict[int(ind2)]
+                pos2 = self.resolution * pos2
+                outfile.write('{}\t{}\t{}\t{}\t{}\n'.format(chr1, pos1, chr2, pos2, value))
+        outfile.close()
 
 ##### genomic signals related functions #####
 
@@ -330,6 +433,28 @@ class dataset:
         signals = pd.read_csv(signals_filepath, sep = "\t", header = None)
         signals = signals[bins.iloc[:,0] == 'chr{}'.format(chrom)]
         return signals
+
+    def get_chrom_signal(self, signals, chrom):
+
+        chrom_size = self.get_chr_size(chrom)['chr_bin_num']
+        chrom_signal = np.zeros(chrom_size)
+        chrom_signal[:] = np.nan
+        for p in range(chrom_signal.shape[0]):
+            ind = self.pos2ind_dict['chr{}'.format(chrom)][p]
+            if not np.isnan(ind):
+                chrom_signal[p] = signals[int(ind)]
+        return chrom_signal
+
+    '''
+    def get_region_signal(self, signal, chr_name, start, end):
+
+        first_ind = self.get_closest_next_ind(chr_name,start)
+        last_ind = self.get_closest_last_ind(chr_name,end)
+        if last_ind < first_ind:
+            return None
+        else:
+            return signal[first_ind:last_ind]
+    '''
 
     def get_signals_and_bins_path(self):
 
@@ -372,16 +497,25 @@ class dataset:
         last_chr, last_pos = self.ind2pos_dict[0]
         last_label = labels[0]
         last_start_pos = last_pos
+        last_added = False
         for l_ind, label in enumerate(labels[1:]):
             chr_name, pos = self.ind2pos_dict[l_ind+1]
             if (last_chr != chr_name) or (last_pos+1 != pos) or (last_label != label):
                 start = last_start_pos * self.resolution
                 end = (last_pos+1) * self.resolution
+                if (l_ind == labels[1:].shape[0]-1) and (last_label == label):
+                    end = (pos+1) * self.resolution
+                    last_added = True
                 label_out.write("{}\t{}\t{}\t{}\n".format(last_chr, start, end, last_label))
                 last_chr = chr_name
                 last_start_pos = pos
                 last_label = label
+            if (l_ind == labels[1:].shape[0]-1) and (last_added == False):
+                start = last_start_pos * self.resolution
+                end = (pos+1) * self.resolution
+                label_out.write("{}\t{}\t{}\t{}\n".format(chr_name, start, end, label))
             last_pos = pos
+
         label_out.close()
 
     def get_closest_next_ind(self, chr_name, pos):
@@ -398,7 +532,7 @@ class dataset:
 
         last_valid_bins = self.pos2ind_dict[chr_name][:pos+1]
         last_valid_bins = last_valid_bins[np.isfinite(last_valid_bins)]
-        if len(last_valid_bins) > 1:
+        if len(last_valid_bins) > 0:
             closest_last_ind = int(last_valid_bins[-1])
             return closest_last_ind
         else:
@@ -410,14 +544,16 @@ class dataset:
         self.labels[label_name] = np.empty(self.total_valid_bins, dtype=object)
         with open(label_file_path, "r") as f:
             for line in f:
-                chr_name, start, end, label, *_ = line.split("\t")
+                chr_name, start, end, label, *_ = line.rstrip("\n").split("\t")
+                if not chr_name in self.valid_chroms:
+                    continue
                 start_pos = int(int(start)/self.resolution)
                 end_pos = int(int(end)/self.resolution)
                 start_ind = self.get_closest_next_ind(chr_name,start_pos)
-                end_ind = self.get_closest_last_ind(chr_name,end_pos)
+                end_ind = self.get_closest_last_ind(chr_name,end_pos)+1
                 if (np.isnan(start_ind) or np.isnan(end_ind)):
                     continue
-                if start_ind <= end_ind:
+                if start_ind < end_ind:
                     self.labels[label_name][start_ind:end_ind] = label
 
     def read_segway_annotation(self, annotation_path, label_name):
@@ -449,20 +585,23 @@ class dataset:
         return chr_annot
 
 
-    def read_line_embedding(self, embedding_path, dim):
+    def read_line_embedding(self, embedding_path, dim, include_umap):
 
         embedding_names = ['emb{}'.format(e) for e in np.arange(1,dim+1)]
         embedding_df = pd.read_csv(embedding_path, skiprows = 1, sep = " ", header = None)
         embedding_df = embedding_df.iloc[:,:-1]
         embedding_df.columns = ['index'] + embedding_names
-        reducer = umap.UMAP()
-        umaps = reducer.fit_transform(embedding_df.loc[:,embedding_names])
-        embedding_df['umap1'] = umaps[:,0]
-        embedding_df['umap2'] = umaps[:,1]
+        if include_umap:
+            reducer = umap.UMAP()
+            umaps = reducer.fit_transform(embedding_df.loc[:,embedding_names])
+            embedding_df['umap1'] = umaps[:,0]
+            embedding_df['umap2'] = umaps[:,1]
         embedding_df['chr_name'] = [self.ind2pos_dict[i][0] for i in embedding_df['index']]
         embedding_df['pos'] = [self.ind2pos_dict[i][1] for i in embedding_df['index']]
-        #embedding_df = embedding_df[['index','chr_name','pos'] + embedding_names]
-        embedding_df = embedding_df[['index','chr_name','pos'] + embedding_names + ['umap1','umap2']]
+        if include_umap:
+            embedding_df = embedding_df[['index','chr_name','pos'] + embedding_names + ['umap1','umap2']]
+        else:
+            embedding_df = embedding_df[['index','chr_name','pos'] + embedding_names]
         embedding_df.sort_values(['index'], inplace=True)
         return embedding_df
 

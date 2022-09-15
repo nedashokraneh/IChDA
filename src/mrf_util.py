@@ -1,3 +1,6 @@
+# By Yuchuan Wang
+# yuchuanw@andrew.cmu.edu
+
 import os
 # import sys
 import numpy as np
@@ -50,6 +53,7 @@ def readBedGraph(file):
 def readData(file):
     """ Read input data (no missing data). """
     data = np.loadtxt(file)
+    data = np.arcsinh(data)
     return data
 
 def readHiC(file):
@@ -61,7 +65,7 @@ def readHiC(file):
 
     return data
 
-def create_hic_matrix(hic_input, n, make_bidirectional = False):
+def create_hic_matrix(hic_inputs, n, make_bidirectional = False):
     """ Create hi-c input matrix, consider upper-left/lower-right case.
 
     Args:
@@ -71,15 +75,18 @@ def create_hic_matrix(hic_input, n, make_bidirectional = False):
         hic_data_merge: Numpy array of hi-c interaction data.
 
     """
-    hic_data = readHiC(hic_input)
-    #hic_data = hic_data[hic_data[:,0]<hic_data[:,1]]
-    if make_bidirectional:
-        hic_data_swap = hic_data.copy()
-        hic_data_swap[:,[0, 1]] = hic_data_swap[:,[1, 0]]
-        hic_data_merge = np.concatenate((hic_data, hic_data_swap), axis=0)
-        return hic_data_merge
-    else:
-        return hic_data
+    hic_data = pd.DataFrame(columns = [0,1,2])
+    for hic_input in hic_inputs:
+        curr_hic_data = readHiC(hic_input)
+        #hic_data = hic_data[hic_data[:,0]<hic_data[:,1]]
+        if make_bidirectional:
+            hic_data_swap = curr_hic_data.copy()
+            hic_data_swap[:,[0, 1]] = hic_data_swap[:,[1, 0]]
+            curr_hic_data = np.concatenate((curr_hic_data, hic_data_swap), axis=0)
+        hic_data = np.concatenate((curr_hic_data, hic_data), axis=0)
+    hic_data = pd.DataFrame(hic_data)
+    hic_data.drop_duplicates(inplace = True)
+    return np.array(hic_data).astype(int)
 
 def log_transform(data, pseudocount=1e-100):
     """ log transform of data.
