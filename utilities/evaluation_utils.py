@@ -8,6 +8,7 @@ from scipy.spatial import distance
 import random
 import data_utils
 from collections import Counter
+from scipy.stats import entropy
 
 #chr_sizes = data_utils.read_chr_sizes('../data/supp/hg19.chrom.sizes')
 chr_sizes = {'chr1': 249250621, 'chr2': 243199373, 'chr3': 198022430, 'chr4': 191154276,
@@ -162,6 +163,8 @@ def get_coverage(annotation_path):
         for line in f:
             chr_name, start, end, label, *_ = line.rstrip("\n").split("\t")
             length = int(end) - int(start)
+            if label == 'NA':
+                continue
             if label in coverages:
                 coverages[label] = coverages[label] + length
             else:
@@ -344,6 +347,7 @@ def create_pivot_table_from_bedpe(bedpe_path, annotation_path, annotation_resolu
             weights.append(int(weight))
     contacts = pd.DataFrame({'label1': labels1, 'label2': labels2, 'weight': weights}).groupby(['label1','label2'])['weight'].sum().reset_index()
     contacts = contacts.pivot_table(columns = 'label2', index = 'label1', values = 'weight')
+    contacts = contacts.fillna(0)
     return contacts
 
 def OE_intra_of_bedpe(bedpe_path, annotation_path, annotation_resolution):
@@ -357,6 +361,9 @@ def OE_intra_of_bedpe(bedpe_path, annotation_path, annotation_resolution):
         observed_intra_contacts = observed_intra_contacts + contacts.loc[key,key]/total_contacts
     return observed_intra_contacts/expected_intra_contacts
 #def create_pivot_table_from_hic(hic_path, bin_path, annotation_path, annotation_resolution):
+
+
+
 
 def get_phases_dist(RT_dict, chr_name, pos):
     phases_dist = [RT_dict[chr_name,phase][pos] for phase in phases]
@@ -437,7 +444,57 @@ def gene_expression_ve(gene_expression_path, annotation_path, annotation_resolut
     VE = variance_explained(np.arcsinh(expressions),labels)
     return VE
 
+def brief_stats(annotation_path, annotation_resolution, gene_expression_path, RT_path):
+    df = pd.read_csv(annotation_path, header = None, sep = "\t")
+    df['length'] = df.iloc[:,2] - df.iloc[:,1]
+    avg_length = np.mean(df['length'])
+    num_domains = df.shape[0]
+    ge_ve = gene_expression_ve(gene_expression_path, annotation_path, annotation_resolution)
+    RT_score1, RT_score2 = RT_scores(RT_path, annotation_path, annotation_resolution)
+    coverage = get_coverage(annotation_path)
+    coverage = [coverage[label] for label in coverage.keys()]
+    ent = entropy(coverage, base=None)
+    return {'avg_length': avg_length, 'num_domains': num_domains, 'ge_ve': ge_ve, 'RT_score1': RT_score1, 'RT_score2': RT_score2, 'ent': ent}
+
+
+def stats(annotation_path, annotation_resolution, gene_expression_path, RT_path, CTCF_bedpe_path, RNAPII_bedpe_path):
+    df = pd.read_csv(annotation_path, header = None, sep = "\t")
+    df['length'] = df.iloc[:,2] - df.iloc[:,1]
+    avg_length = np.mean(df['length'])
+    num_domains = df.shape[0]
+    ge_ve = gene_expression_ve(gene_expression_path, annotation_path, annotation_resolution)
+    RT_score1, RT_score2 = RT_scores(RT_path, annotation_path, annotation_resolution)
+    CTCF_OE = OE_intra_of_bedpe(CTCF_bedpe_path, annotation_path, annotation_resolution)
+    RNAPII_OE = OE_intra_of_bedpe(RNAPII_bedpe_path, annotation_path, annotation_resolution)
+    coverage = get_coverage(annotation_path)
+    coverage = [coverage[label] for label in coverage.keys()]
+    ent = entropy(coverage, base=None)
+    return {'avg_length': avg_length, 'num_domains': num_domains, 'ge_ve': ge_ve, 'RT_score1': RT_score1, 'RT_score2': RT_score2, 'CTCF_OE': CTCF_OE, 'RNAPII_OE': RNAPII_OE, 'ent': ent}
+
 ####################################
+
+
+def OE_enrichment(label1, label2, labels):
+    if len(label1) != len(label2):
+        print('The size of label1 and label2 is different...')
+        return
+    #labels = np.concatenate([label1,label2])
+    total_contacts = len(label1)
+    coverage = pd.DataFrame({'label': labels})
+    coverage = pd.DataFrame(coverage.groupby('label').size())
+    coverage = coverage / np.sum(coverage)
+    contacts = pd.DataFrame({'label1': label1, 'label2': label2})
+    contacts = pd.DataFrame(contacts.groupby(['label1','label2']).size())
+    contacts = contacts.pivot_table(columns = 'label2', index = 'label1', values = 0)
+    contacts = contacts.fillna(0)
+    expected_intra_contacts = 0
+    observed_intra_contacts = 0
+    for i,key in coverage.iterrows():
+        if (not i in contacts.index) or (not i in contacts.columns):
+            continue
+        expected_intra_contacts = expected_intra_contacts + coverage.loc[i].item()**2
+        observed_intra_contacts = observed_intra_contacts + contacts.loc[i,i].item()/total_contacts
+    return observed_intra_contacts/expected_intra_contacts
 
 
 ##### comparison of two annotations #####
@@ -459,6 +516,14 @@ def overlap(in_label1, in_label2):
     a_table_EO = EO_ratio(a_table)
     #a_table_percentage = percentage_ratio(a_table)
     return a_table_EO
+
+def overlap_per(in_label1, in_label2):
+    in_labels = pd.DataFrame({'in_label1': in_label1, 'in_label2': in_label2})
+    a = in_labels.groupby(['in_label1','in_label2']).size()
+    a_table = a.unstack(level=0)
+    #a_table_EO = EO_ratio(a_table)
+    a_table_percentage = percentage_ratio(a_table)
+    return a_table_percentage
 
 #########################################
 
