@@ -38,7 +38,7 @@ src/HC_data_generation.py generates processed data given raw input signals (.big
 
 ```python src/HC.py -c test/HC_config.json```
 
-src/HC.py learns structural embeddings and combinatorial domain annotation given generate data using src/HC_data_generation.py .
+src/HC.py learns structural embeddings and combinatorial domain annotation given generate data using src/HC_data_generation.py . The parameters are:
 
 * resolution: The resolution of genomic regions.
 * num_labels: The number of domain types of a domain annotation.
