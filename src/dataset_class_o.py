@@ -31,13 +31,11 @@ class dataset:
         * output_dir_path: path of a directory to save models required files
     '''
 
-    def __init__(self, cell_type, chr_size_path, valid_chroms, valid_bins_path,
-                resolution, hic_file_path, juicer_path, hic_dir_path,
-                signals_names, signals_dir_path, output_dir_path):
+    def __init__(self, cell_type, assembly, resolution, hic_file_path, juicer_path, hic_dir_path,
+    signals_names, signals_dir_path, output_dir_path, data_path, config_path):
 
         self.cell_type = cell_type
-        self.chr_sizes = data_utils.read_chr_sizes(chr_size_path)
-        self.valid_chroms = valid_chroms
+        self.assembly = assembly
         self.resolution = resolution
         self.hic_file_path = hic_file_path
         self.juicer_path = juicer_path
@@ -56,8 +54,16 @@ class dataset:
         self.output_interactions_dir_path = os.path.join(self.output_dir_path, 'interactions')
         if not os.path.exists(self.output_interactions_dir_path):
             os.mkdir(self.output_interactions_dir_path)
+
+        self.data_path = data_path
+        self.config = data_utils.read_config(config_path)
+        self.valid_chroms = ['chr{}'.format(c) for c in self.config['valid_chroms']]
+        if self.assembly == "hg19":
+            self.chr_sizes = data_utils.read_chr_sizes(os.path.join(self.data_path, self.config['hg19_chr_sizes_file']))
+            self.chr_arms_sizes = data_utils.read_chr_arm_sizes(os.path.join(self.data_path, self.config['hg19_chr_arms_sizes_file']))
+        else:
+            self.chr_sizes = data_utils.read_chr_sizes(os.path.join(self.data_path, self.config['hg38_chr_sizes_file']))
         self.labels = {}
-        self.load_pos2ind_and_ind2pos_maps(valid_bins_path)
 
     def get_chr_size(self, chrom):
 
@@ -313,17 +319,14 @@ class dataset:
 
 
     def generate_significant_interactions_file(self, type, base_count):
-        out_file_path = os.path.join(self.output_interactions_dir_path, '{}_significant_interactions_b{}.txt'.format(type,base_count))
-        if os.path.exists(out_file_path):
-            print("The interaction file exists...")
-            return
+        out_file_path = os.path.join(self.output_interactions_dir_path, '{}_significant_interactions_b{}_2.txt'.format(type,base_count))
         f = open(out_file_path, 'w')
         valid_chroms = [c for c in np.arange(1,23) if len(self.get_valid_bins(c)) > 0]
         chroms_valid_lengths = [len(self.get_valid_bins(c)) for c in np.arange(1,23)]
         valid_chroms_lengths = [chroms_valid_lengths[c-1] for c in valid_chroms]
         min_length = np.min(valid_chroms_lengths)
-        for c,c1 in enumerate(valid_chroms):
-            for c2 in valid_chroms[c:]:
+        for c,c1 in enumerate(valid_chroms[:1]):
+            for c2 in valid_chroms[c:1]:
                 c1_valid_length = chroms_valid_lengths[c1-1]
                 c2_valid_length = chroms_valid_lengths[c2-1]
                 ratio = (c1_valid_length/min_length) * (c2_valid_length/min_length)
@@ -338,9 +341,9 @@ class dataset:
                 df.dropna(inplace=True)
                 df[['ind1','ind2']] = df[['ind1','ind2']].astype(int)
                 for i, row in df.iterrows():
-                    f.write('{}\t{}\t{}\n'.format(int(row['ind1']), int(row['ind2']), 1))
-                    f.write('{}\t{}\t{}\n'.format(int(row['ind2']), int(row['ind1']), 1))
-                    #f.write('{}\t{}\t{}\n'.format(1, 2, 1))
+                    #f.write('{}\t{}\t{}\n'.format(int(row['ind1']), int(row['ind2']), 1))
+                    #f.write('{}\t{}\t{}\n'.format(int(row['ind2']), int(row['ind1']), 1))
+                    f.write('{}\t{}\t{}\n'.format(1, 2, 1))
         f.close()
 
     def generate_fithic_intra(self, pvalue):
@@ -423,19 +426,17 @@ class dataset:
     def generate_signals_and_bin_files(self):
 
         bin_filepath = os.path.join(self.output_dir_path, "bin.txt")
-        if not os.path.exists(bin_filepath):
-            self.valid_bins_df.to_csv(bin_filepath, sep = "\t", header = None, index = False)
+        self.valid_bins_df.to_csv(bin_filepath, sep = "\t", header = None, index = False)
+        signals_df = self.valid_bins_df.copy()
+        for signal_name in self.signals_names:
+            signal_filename = "{}.bedgraph".format(signal_name)
+            signal_filepath = os.path.join(self.signals_dir_path, signal_filename)
+            signal_df = pd.read_csv(signal_filepath, sep = "\t", header = None)
+            signal_df.columns = ['chr_name', 'start', 'end', signal_name]
+            signals_df = pd.merge(signals_df, signal_df, on = ['chr_name', 'start', 'end'])
+        signals_df = signals_df.loc[:,self.signals_names]
         signals_filepath = os.path.join(self.output_dir_path, "signals.txt")
-        if not os.path.exists(signals_filepath):
-            signals_df = self.valid_bins_df.copy()
-            for signal_name in self.signals_names:
-                signal_filename = "{}.bedgraph".format(signal_name)
-                signal_filepath = os.path.join(self.signals_dir_path, signal_filename)
-                signal_df = pd.read_csv(signal_filepath, sep = "\t", header = None)
-                signal_df.columns = ['chr_name', 'start', 'end', signal_name]
-                signals_df = pd.merge(signals_df, signal_df, on = ['chr_name', 'start', 'end'])
-            signals_df = signals_df.loc[:,self.signals_names]        
-            signals_df.to_csv(signals_filepath, sep = "\t", header = None, index = False)
+        signals_df.to_csv(signals_filepath, sep = "\t", header = None, index = False)
 
 
     def get_chrom_signals(self, chrom):

@@ -2,7 +2,7 @@ import math
 import os
 import numpy as np
 import pandas as pd
-from scipy import stats
+from scipy import stats as st
 from sklearn import metrics
 from scipy.spatial import distance
 import random
@@ -362,8 +362,90 @@ def OE_intra_of_bedpe(bedpe_path, annotation_path, annotation_resolution):
     return observed_intra_contacts/expected_intra_contacts
 #def create_pivot_table_from_hic(hic_path, bin_path, annotation_path, annotation_resolution):
 
+def intra_ratio(df, label_col1, label_col2, weight_col):
 
+    contacts = df.groupby([label_col1, label_col2])[weight_col].sum().reset_index()
+    contacts = contacts.pivot_table(columns = label_col2, index = label_col1, values = weight_col)
+    contacts = contacts.fillna(0)
+    intra = 0
+    for l in np.unique(list(contacts.index) + list(contacts.columns)):
+        if l in contacts.index and l in contacts.columns:
+            intra = intra + contacts.loc[l,l]
+    ratio = intra / np.sum(contacts.to_numpy())
+    return ratio
 
+def bOE_ratio(bedpe_path, annotation_path, annotation_resolution, b_num):
+    bp = pd.read_csv(bedpe_path, sep = "\t")
+    bp.columns = ['chr1', 'pos1', 'chr2', 'pos2', 'weight']
+    annotation_dict = evaluation_utils.make_annotation_dict(annotation_path, annotation_resolution)
+    bp['label1'] = [annotation_dict[ch][p] for ch,p in zip(bp['chr1'],bp['pos1'])]
+    bp['label2'] = [annotation_dict[ch][p] for ch,p in zip(bp['chr2'],bp['pos2'])]
+    b_ratios = []
+    for b in range(b_num):
+        sampled_inds = [random.randint(0,bp.shape[0]-1) for i in range(bp.shape[0])]
+        sampled_bp = bp.iloc[sampled_inds, :]
+        contacts = pd.DataFrame({'label1': sampled_bp['label1'], 'label2': sampled_bp['label2'], 'weight': sampled_bp['weight']}).groupby(['label1','label2'])['weight'].sum().reset_index()
+        contacts = contacts.pivot_table(columns = 'label2', index = 'label1', values = 'weight')
+        contacts = contacts.fillna(0)
+        coverages = evaluation_utils.get_coverage(annotation_path)
+        total_contacts = np.sum(contacts.to_numpy())
+        expected_intra_contacts = 0
+        observed_intra_contacts = 0
+        for key in coverages:
+            expected_intra_contacts = expected_intra_contacts + coverages[key]**2
+            observed_intra_contacts = observed_intra_contacts + contacts.loc[key,key]/total_contacts
+        b_ratios.append(observed_intra_contacts/expected_intra_contacts)
+    return b_ratios
+
+def contacts2(bedpe_path, annotation_path, annotation_resolution):
+    bp = pd.read_csv(bedpe_path, sep = "\t")
+    bp.columns = ['chr1', 'pos1', 'chr2', 'pos2', 'weight']
+    annotation_dict = make_annotation_dict(annotation_path, annotation_resolution)
+    bp['label1'] = [annotation_dict[ch][p] for ch,p in zip(bp['chr1'],bp['pos1'])]
+    bp['label2'] = [annotation_dict[ch][p] for ch,p in zip(bp['chr2'],bp['pos2'])]
+    contacts = bp.groupby(['label1', 'label2'])['weight'].sum().reset_index()
+    contacts = contacts.pivot_table(columns = 'label2', index = 'label1', values = 'weight')
+    contacts = contacts.fillna(0)
+    return contacts
+
+def OE_ratio2(bedpe_path, annotation_path, annotation_resolution):
+    contacts = contacts2(bedpe_path, annotation_path, annotation_resolution)
+    coverages = get_coverage(annotation_path)
+    total_contacts = np.sum(contacts.to_numpy())
+    expected_intra_contacts = 0
+    observed_intra_contacts = 0
+    for key in coverages:
+        expected_intra_contacts = expected_intra_contacts + coverages[key]**2
+        observed_intra_contacts = observed_intra_contacts + contacts.loc[key,key]/total_contacts
+    return observed_intra_contacts/expected_intra_contacts
+
+def b_OE_ratio(bedpe_path, annotation_path, annotation_resolution, b_num):
+    b_OE_ratios = []
+    for b in range(b_num):
+        contacts = b_contacts(bedpe_path, annotation_path, annotation_resolution)
+        coverages = get_coverage(annotation_path)
+        total_contacts = np.sum(contacts.to_numpy())
+        expected_intra_contacts = 0
+        observed_intra_contacts = 0
+        for key in coverages:
+            if (key in contacts.index) & (key in contacts.columns):
+                expected_intra_contacts = expected_intra_contacts + coverages[key]**2
+                observed_intra_contacts = observed_intra_contacts + contacts.loc[key,key]/total_contacts
+        b_OE_ratios.append(observed_intra_contacts/expected_intra_contacts)
+    return b_OE_ratios
+
+def b_contacts(bedpe_path, annotation_path, annotation_resolution):
+    bp = pd.read_csv(bedpe_path, sep = "\t")
+    sampled_inds = [random.randint(0,bp.shape[0]-1) for i in range(bp.shape[0])]
+    bp = bp.iloc[sampled_inds,:]
+    bp.columns = ['chr1', 'pos1', 'chr2', 'pos2', 'weight']
+    annotation_dict = make_annotation_dict(annotation_path, annotation_resolution)
+    bp['label1'] = [annotation_dict[ch][p] for ch,p in zip(bp['chr1'],bp['pos1'])]
+    bp['label2'] = [annotation_dict[ch][p] for ch,p in zip(bp['chr2'],bp['pos2'])]
+    contacts = bp.groupby(['label1', 'label2'])['weight'].sum().reset_index()
+    contacts = contacts.pivot_table(columns = 'label2', index = 'label1', values = 'weight')
+    contacts = contacts.fillna(0)
+    return contacts
 
 def get_phases_dist(RT_dict, chr_name, pos):
     phases_dist = [RT_dict[chr_name,phase][pos] for phase in phases]
@@ -444,6 +526,87 @@ def gene_expression_ve(gene_expression_path, annotation_path, annotation_resolut
     VE = variance_explained(np.arcsinh(expressions),labels)
     return VE
 
+def RT_ve(RT_path, annotation_path, annotation_resolution):
+    annotation_dict = make_annotation_dict(annotation_path, annotation_resolution)
+    RT = pd.read_csv(RT_path, sep = "\t", header = None)
+    RT.columns = ['chr_name', 'pos', 'G1', 'S1', 'S2', 'S3', 'S4', 'G2']
+    RT['pos2'] = (RT['pos']/annotation_resolution).astype(int)
+    RT.dropna(inplace = True)
+    RT['label'] = [annotation_dict[ch][p] for ch,p in zip(RT['chr_name'], RT['pos2'])]
+    RT2 = RT.groupby(['chr_name','pos2']).agg({'label': 'max', 'G1': 'mean', 'S1': 'mean', 'S2': 'mean', 'S3': 'mean',
+                            'S4': 'mean', 'G2': 'mean'})
+    RT2.dropna(inplace = True)
+    VEs = []
+    for phase in ['G1', 'S1', 'S2', 'S3', 'S4', 'G2']:
+        VEs.append(variance_explained(RT2[phase], RT2['label']))
+    return np.mean(VEs)
+
+def sum_of_sq(v):
+    v2 = [v_*v_ for v_ in v]
+    return (np.nansum(v2))
+
+def bootstrap_variance_explained(in_signal, in_label, b_num):
+    p = pd.DataFrame({'signal': in_signal, 'label': in_label})
+    clusters_means = p.groupby('label')['signal'].mean()
+    p['pred'] = [clusters_means[l] for l in in_label]
+    p['d_from_pred'] = p['signal'] - p['pred']
+    bootstrap_estimates = []
+    for b in range(b_num):
+        sampled_d = random.choices(p['d_from_pred'], k = len(p['d_from_pred']))
+        new_signal = p['pred'] + sampled_d
+        new_d_from_mean = new_signal - np.mean(new_signal)
+        bootstrap_estimates.append(1 - sum_of_sq(sampled_d)/sum_of_sq(new_d_from_mean))
+    return bootstrap_estimates
+
+def gene_expression_bve(annotation_path, annotation_resolution, gene_expression_path, b_num):
+    annotation_dict = make_annotation_dict(annotation_path, annotation_resolution)
+    expressions = []
+    labels = []
+    with open(gene_expression_path, 'r') as f:
+        for line in f:
+            gene_id, chr_num, pos1, pos2, _, gene_expr = line.rstrip("\n").split("\t")
+            if not chr_num in [str(c) for c in np.arange(1,23)]:
+                continue
+            chr_name = 'chr{}'.format(chr_num)
+            start = min(int(pos1),int(pos2))
+            end = max(int(pos1),int(pos2))
+            label = get_most_freq_label(chr_name, start, end, annotation_dict, annotation_resolution)
+            if label == None:
+                continue
+            expressions.append(float(gene_expr))
+            labels.append(label)
+    bootstrap_ve = bootstrap_variance_explained(np.arcsinh(expressions),labels, b_num)
+    return bootstrap_ve
+
+
+def RT_bve(RT_path, annotation_path, annotation_resolution, b_num):
+    annotation_dict = make_annotation_dict(annotation_path, annotation_resolution)
+    RT = pd.read_csv(RT_path, sep = "\t", header = None)
+    RT.columns = ['chr_name', 'pos', 'G1', 'S1', 'S2', 'S3', 'S4', 'G2']
+    RT['pos2'] = (RT['pos']/annotation_resolution).astype(int)
+    RT.dropna(inplace = True)
+    RT['label'] = [annotation_dict[ch][p] for ch,p in zip(RT['chr_name'], RT['pos2'])]
+    RT2 = RT.groupby(['chr_name','pos2']).agg({'label': 'max', 'G1': 'mean', 'S1': 'mean', 'S2': 'mean', 'S3': 'mean',
+                            'S4': 'mean', 'G2': 'mean'})
+    RT2.dropna(inplace = True)
+    signals_dfs = {}
+    for phase in ['G1', 'S1', 'S2', 'S3', 'S4', 'G2']:
+        signals_dfs[phase] = RT2.loc[:,['label',phase]]
+        clusters_means = signals_dfs[phase].groupby('label')[phase].mean()
+        signals_dfs[phase]['pred'] = [clusters_means[l] for l in signals_dfs[phase]['label']]
+        signals_dfs[phase]['d_from_pred'] = signals_dfs[phase][phase] - signals_dfs[phase]['pred']
+    bootstrap_estimates = []
+    for b in range(b_num):
+        sampled_inds = [random.randint(0,signals_dfs[phase].shape[0]-1) for i in range(signals_dfs[phase].shape[0])]
+        VEs = []
+        for phase in ['G1', 'S1', 'S2', 'S3', 'S4', 'G2']:
+            sampled_d = signals_dfs[phase].iloc[sampled_inds,:]['d_from_pred']
+            new_signal = signals_dfs[phase]['pred'] + sampled_d
+            new_d_from_mean = new_signal - np.mean(new_signal)
+            VEs.append(1 - sum_of_sq(sampled_d)/sum_of_sq(new_d_from_mean))
+        bootstrap_estimates.append(np.mean(VEs))
+    return bootstrap_estimates
+
 def brief_stats(annotation_path, annotation_resolution, gene_expression_path, RT_path):
     df = pd.read_csv(annotation_path, header = None, sep = "\t")
     df['length'] = df.iloc[:,2] - df.iloc[:,1]
@@ -471,6 +634,16 @@ def stats(annotation_path, annotation_resolution, gene_expression_path, RT_path,
     ent = entropy(coverage, base=None)
     return {'avg_length': avg_length, 'num_domains': num_domains, 'ge_ve': ge_ve, 'RT_score1': RT_score1, 'RT_score2': RT_score2, 'CTCF_OE': CTCF_OE, 'RNAPII_OE': RNAPII_OE, 'ent': ent}
 
+def stats2(annotation_path, annotation_resolution, gene_expression_path, RT_path, CTCF_bedpe_path, RNAPII_bedpe_path):
+    ge_ves = gene_expression_bve(annotation_path, annotation_resolution, gene_expression_path,20)
+    RT_VEs = RT_bve(RT_path, annotation_path, annotation_resolution, 20)
+    CTCF_OEs = b_OE_ratio(CTCF_bedpe_path, annotation_path, annotation_resolution, 20)
+    RNAPII_OEs = b_OE_ratio(RNAPII_bedpe_path, annotation_path, annotation_resolution, 20)
+    scores = []
+    for i in range(20):
+        scores.append({'ge_ve': ge_ves[i], 'RT_ve': RT_VEs[i], 'CTCF_OE': CTCF_OEs[i], 'RNAPII_OE': RNAPII_OEs[i]})
+    return scores
+
 ####################################
 
 
@@ -496,6 +669,52 @@ def OE_enrichment(label1, label2, labels):
         observed_intra_contacts = observed_intra_contacts + contacts.loc[i,i].item()/total_contacts
     return observed_intra_contacts/expected_intra_contacts
 
+def gene_expr_classification(gene_expression_path, annotation_path, annotation_resolution):
+    annotation_dict = make_annotation_dict(annotation_path, annotation_resolution)
+    expressions = []
+    labels = []
+    with open(gene_expression_path, 'r') as f:
+        for line in f:
+            gene_id, chr_num, pos1, pos2, _, gene_expr = line.rstrip("\n").split("\t")
+            if not chr_num in [str(c) for c in np.arange(1,23)]:
+                continue
+            chr_name = 'chr{}'.format(chr_num)
+            start = min(int(pos1),int(pos2))
+            end = max(int(pos1),int(pos2))
+            label = get_most_freq_label(chr_name, start, end, annotation_dict, annotation_resolution)
+            if label == None:
+                continue
+            expressions.append(float(gene_expr))
+            labels.append(label)
+    return expressions, labels
+
+def gene_expr_stat(gene_expression_path, annotation_path, annotation_resolution):
+    expressions, labels = gene_expr_classification(gene_expression_path, annotation_path, annotation_resolution)
+    expressions_df = pd.DataFrame({'label': labels, 'expression': expressions})
+    expressions_df = expressions_df.replace(to_replace='None', value=np.nan).dropna()
+    #expressions_df['label'] = expressions_df['label'].astype(int)
+    expr_stat = pd.DataFrame(expressions_df.groupby('label')['expression'].mean())
+    return expr_stat
+
+def genes_num(gene_expression_path, annotation_path, annotation_resolution):
+    expressions, labels = gene_expr_classification(gene_expression_path, annotation_path, annotation_resolution)
+    expressions_df = pd.DataFrame({'label': labels, 'expression': expressions})
+    expressions_df = expressions_df.replace(to_replace='None', value=np.nan).dropna()
+
+    labels_df = pd.DataFrame({'label': labels})
+    coverage = pd.DataFrame(labels_df.groupby('label').size())
+
+    #expressions_df['label'] = expressions_df['label'].astype(int)
+    expr_stat = pd.DataFrame(expressions_df.groupby('label').size())
+    expr_stat = expr_stat.div(coverage.iloc[0]/10, axis='columns')
+    return expr_stat
+
+def coverage_stat(labels):
+    labels_df = pd.DataFrame({'label': labels})
+    coverage_stat = pd.DataFrame(labels_df.groupby('label').size())
+    coverage_stat = coverage_stat / np.sum(coverage_stat)
+    return coverage_stat
+
 
 ##### comparison of two annotations #####
 
@@ -504,18 +723,26 @@ def percentage_ratio(table):
     return(table.div(table.sum(axis=0), axis = 1))
 
 def EO_ratio(table):
-    x_probs = table.sum(axis=0)/np.nansum(table.values)
-    y_probs = table.sum(axis=1)/np.nansum(table.values)
-    expected = np.array(y_probs).reshape(-1, 1).dot(np.array(x_probs).reshape(1,-1))*np.nansum(table.values)
-    return(table.fillna(0)/expected)
+    table[np.isnan(table)] = 0
+    x_probs = table.sum(axis=0)/np.nansum(table)
+    y_probs = table.sum(axis=1)/np.nansum(table)
+    expected = np.array(y_probs).reshape(-1, 1).dot(np.array(x_probs).reshape(1,-1))*np.nansum(table)
+    n = np.sum(expected)
+    probs = (expected/n)
+    pvalues = np.ones_like(probs)
+    for i in range(table.shape[0]):
+        for j in range(table.shape[1]):
+            pvalues[i,j] = st.binom_test(table[i,j], n, probs[i,j], alternative = 'greater')
+    return([table/expected,pvalues])
 
-def overlap(in_label1, in_label2):
+def overlap_fc(in_label1, in_label2):
     in_labels = pd.DataFrame({'in_label1': in_label1, 'in_label2': in_label2})
     a = in_labels.groupby(['in_label1','in_label2']).size()
     a_table = a.unstack(level=0)
-    a_table_EO = EO_ratio(a_table)
-    #a_table_percentage = percentage_ratio(a_table)
-    return a_table_EO
+    out = EO_ratio(np.array(a_table))
+    a_table_EO = pd.DataFrame(out[0], index=a_table.index, columns=a_table.columns)
+    pvalues = pd.DataFrame(out[1], index=a_table.index, columns=a_table.columns)
+    return ([a_table_EO, pvalues])
 
 def overlap_per(in_label1, in_label2):
     in_labels = pd.DataFrame({'in_label1': in_label1, 'in_label2': in_label2})

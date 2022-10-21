@@ -2,7 +2,7 @@
 # yuchuanw@andrew.cmu.edu
 
 import os
-# import sys
+import sys
 import numpy as np
 import struct
 import matplotlib

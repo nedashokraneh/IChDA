@@ -67,22 +67,32 @@ def make_sym_table(pd_table):
 
     indices = pd_table.index
     columns = pd_table.columns
-    if list(indices) != list(columns):
-        print('this is a non symmetric matrix...')
-        return
-    #labels = np.union1d(indices, columns)
-    new_pd_table = pd.DataFrame(columns = columns, index = indices)
-    for l,label1 in enumerate(columns):
-        for label2 in columns[l:]:
+    #if list(indices) != list(columns):
+    #    print('this is a non symmetric matrix...')
+    #    return
+    labels = np.union1d(indices, columns)
+    #new_pd_table = pd.DataFrame(columns = columns, index = indices)
+    new_pd_table = pd.DataFrame(columns = labels, index = labels)
+    for l,label1 in enumerate(labels):
+        for label2 in labels[l:]:
             if label1 == label2:
-                new_pd_table.loc[label1, label2] = pd_table.loc[label1, label2]
-                if np.isnan(new_pd_table.loc[label1, label2]):
+                try:
+                    new_pd_table.loc[label1, label2] = pd_table.loc[label1, label2]
+                except:
                     new_pd_table.loc[label1, label2] = 0
+                if np.isnan(new_pd_table.loc[label1, label2]):
+                        new_pd_table.loc[label1, label2] = 0
             else:
-                count1 = pd_table.loc[label1,label2]
+                try:
+                    count1 = pd_table.loc[label1,label2]
+                except:
+                    count1 = 0
                 if np.isnan(count1):
                     count1 = 0
-                count2 = pd_table.loc[label2,label1]
+                try:
+                    count2 = pd_table.loc[label2,label1]
+                except:
+                    count2 = 0
                 if np.isnan(count2):
                     count2 = 0
                 new_pd_table.loc[label1, label2] = count1 + count2
