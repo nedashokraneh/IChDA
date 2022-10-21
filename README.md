@@ -15,6 +15,7 @@ embed the Hi-C graph information into structural features, and then jointly clus
 
 ## Data generation
 ```python src/HC_data_generation.py -c test/HC_data_generation_config.json```
+
 src/HC_data_generation.py generates processed data given raw input signals (.bigwig format) and Hi-C data (.hic format). The parameters are:
 
 * cell_type: The cell type corresponding to data.
@@ -28,11 +29,16 @@ src/HC_data_generation.py generates processed data given raw input signals (.big
 * juicer_path: The path of juicer tool to extract Hi-C interaction matrices. Available in utilities/juicer_tools_1.22.01.jar .
 * resolution: The resolution of genomic regions.
 * processed_dir: The path of directory to save processed files.
+
+
+
 , which are passed in .json file. Example: test/HC_data_generation_config.json. This script makes genomic bin file (each row has 4 columns, chromosome name, start, end, and index corresponding to valid bins. Indices are between 0 and N-1, where N is total number of valid bins.), signals file (i-th row signals values for i-th bin), and interactions file (each row has 3 columns, index of source bin, index of target bin, and the interaction weight between two bins) in processed_dir.
 
 ## Clustering
 
 ```python src/HC.py -c test/HC_config.json```
+
+src/HC.py learns structural embeddings and combinatorial domain annotation given generate data using src/HC_data_generation.py .
 
 * resolution: The resolution of genomic regions.
 * num_labels: The number of domain types of a domain annotation.
@@ -43,4 +49,9 @@ src/HC_data_generation.py generates processed data given raw input signals (.big
 * signals_file: The path of generated signals file.
 * interactions_file: The path of generated interactions file.
 * processed_dir: The path of directory including to save embeddings and annotations.
+
 , which are passed in .json file. Example: test/HC_config.json. This script learns LINE embeddings and save it in processed_dir/embeddings, and learn combinatorial domain annotation and save it in processed_dir/annotations .
+
+## Annotations
+
+Our annotations are available in data/processed_data/annotations .
