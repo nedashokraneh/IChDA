@@ -1,0 +1,15 @@
+{
+  "resolution": 100000,
+  "num_labels": 8,
+  "line_path": "/media/nedooshki/drive1/IChDA/utilities/LINE/linux/line",
+  "chr_size_path": "/media/nedooshki/drive1/IChDA/data/supp/hg19.chrom.sizes",
+  "valid_chroms": ["chr1","chr2","chr3","chr4","chr5",
+			  "chr6","chr7","chr8","chr9","chr10",
+			  "chr11","chr12","chr13","chr14","chr15",
+			  "chr16","chr17","chr18","chr19","chr20",
+			  "chr21","chr22"],
+  "bins_file": "/media/nedooshki/drive1/IChDA/data/processed_data/bin.txt",
+  "signals_file": "/media/nedooshki/drive1/IChDA/data/processed_data/signals.txt",
+  "interactions_file": "/media/nedooshki/drive1/IChDA/data/processed_data/interactions/oe_significant_interactions_b2000.txt",
+  "processed_dir": "/media/nedooshki/drive1/IChDA/data/processed_data"
+}
