@@ -38,7 +38,7 @@ embed the Hi-C graph information into structural features, and then jointly clus
 
 ```python src/HC.py -c test/HC_config.json```
 
-```src/HC.py``` learns structural embeddings and combinatorial domain annotation given generate data using ```src/HC_data_generation.py``` . The parameters are:
+```src/HC.py``` learns structural embeddings and combinatorial domain annotation given generated data using ```src/HC_data_generation.py``` . The parameters are:
 
 * resolution: The resolution of genomic regions.
 * num_labels: The number of domain types of a domain annotation.
@@ -48,7 +48,7 @@ embed the Hi-C graph information into structural features, and then jointly clus
 * bins_file: The path of generated genomic bin file.
 * signals_file: The path of generated signals file.
 * interactions_file: The path of generated interactions file.
-* processed_dir: The path of directory including to save embeddings and annotations.
+* processed_dir: The path of directory to save embeddings and annotations.
 
 , which are passed in .json file. Example: ```test/HC_config.json```. This script learns LINE embeddings and save it in processed_dir/embeddings, and learn combinatorial domain annotation and save it in processed_dir/annotations .
 
